@@ -13,9 +13,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.organizationService.apiAdminOrganizationGet().toPromise().then(() => {
 
-    });
   }
 
 }

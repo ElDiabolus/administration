@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {OrganizationService} from "../../../api/services/organization.service";
 
 @Component({
   selector: 'app-organization-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganizationListComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected organizationService : OrganizationService) { }
 
   ngOnInit(): void {
+    this.organizationService.apiAdminOrganizationGet().toPromise().then(() => {
+
+    });
   }
 
 }

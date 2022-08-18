@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'caritas-administration';
+
+  isLoggedIn()
+  {
+    return localStorage.token != null;
+  }
 }
