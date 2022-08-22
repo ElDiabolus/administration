@@ -117,7 +117,7 @@ export class AuthenticationService extends BaseService {
     body: {
 
 /**
- * E-Mail of the user. Must be a valid email address.
+ * E-Mail of the user.
  */
 'email': string;
 
@@ -185,7 +185,7 @@ export class AuthenticationService extends BaseService {
     body: {
 
 /**
- * E-Mail of the user. Must be a valid email address.
+ * E-Mail of the user.
  */
 'email': string;
 
@@ -220,6 +220,8 @@ export class AuthenticationService extends BaseService {
 
   /**
    * Login with Bearer Token (Authorization Header).
+   *
+   * <small class="badge badge-purple">App authorization available</small>
    *
    * If you are not able to use Cookies, for example in a mobile application, you can use Token-Auth instead.
    * Tokens will be valid for 20 hours before they expire.
@@ -286,6 +288,8 @@ export class AuthenticationService extends BaseService {
   /**
    * Login with Bearer Token (Authorization Header).
    *
+   * <small class="badge badge-purple">App authorization available</small>
+   *
    * If you are not able to use Cookies, for example in a mobile application, you can use Token-Auth instead.
    * Tokens will be valid for 20 hours before they expire.
    *
@@ -348,6 +352,8 @@ export class AuthenticationService extends BaseService {
   /**
    * Logout.
    *
+   * <small class="badge badge-purple">App authorization available</small>
+   *
    * Invalidate your current session/token
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -386,6 +392,8 @@ export class AuthenticationService extends BaseService {
   /**
    * Logout.
    *
+   * <small class="badge badge-purple">App authorization available</small>
+   *
    * Invalidate your current session/token
    *
    * This method provides access to only to the response body.
@@ -406,6 +414,100 @@ export class AuthenticationService extends BaseService {
 'success'?: boolean;
 }>) => r.body as {
 'success'?: boolean;
+})
+    );
+  }
+
+  /**
+   * Path part for operation apiAuthHeartbeatGet
+   */
+  static readonly ApiAuthHeartbeatGetPath = '/api/auth/heartbeat';
+
+  /**
+   * Heartbeat.
+   *
+   * <small class="badge badge-purple">App authorization available</small>
+   *
+   * Checks if the session is still valid and active and returns information about the authenticated user.
+   *
+   * <aside class="warning">
+   *     This endpoint does NOT change the active session and therefore is unable to increase the lifetime of the session.
+   *     Its purpose is only for testing if the session is still valid and active.
+   * </aside>
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiAuthHeartbeatGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiAuthHeartbeatGet$Response(params?: {
+    Authorization?: string;
+    'Content-Type'?: string;
+    Accept?: string;
+  }): Observable<StrictHttpResponse<{
+'success'?: boolean;
+'user'?: {
+};
+}>> {
+
+    const rb = new RequestBuilder(this.rootUrl, AuthenticationService.ApiAuthHeartbeatGetPath, 'get');
+    if (params) {
+      rb.header('Authorization', params.Authorization, {});
+      rb.header('Content-Type', params['Content-Type'], {});
+      rb.header('Accept', params.Accept, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<{
+        'success'?: boolean;
+        'user'?: {
+        };
+        }>;
+      })
+    );
+  }
+
+  /**
+   * Heartbeat.
+   *
+   * <small class="badge badge-purple">App authorization available</small>
+   *
+   * Checks if the session is still valid and active and returns information about the authenticated user.
+   *
+   * <aside class="warning">
+   *     This endpoint does NOT change the active session and therefore is unable to increase the lifetime of the session.
+   *     Its purpose is only for testing if the session is still valid and active.
+   * </aside>
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiAuthHeartbeatGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiAuthHeartbeatGet(params?: {
+    Authorization?: string;
+    'Content-Type'?: string;
+    Accept?: string;
+  }): Observable<{
+'success'?: boolean;
+'user'?: {
+};
+}> {
+
+    return this.apiAuthHeartbeatGet$Response(params).pipe(
+      map((r: StrictHttpResponse<{
+'success'?: boolean;
+'user'?: {
+};
+}>) => r.body as {
+'success'?: boolean;
+'user'?: {
+};
 })
     );
   }

@@ -1,1 +1,9 @@
-<p>organization-list works!</p>
+<div *ngFor="let organization of listItems.items">
+  <div>{{organization.name}}</div>
+  <div>{{organization.street}}</div>
+  <div>{{organization.postcode}}</div>
+  <div>{{organization.city}}</div>
+  <div>{{organization.contact}}</div>
+  <div [routerLink]="['/organization-edit/', organization.id]">EDIT</div>
+</div>
+<div [routerLink]="['/organization-new']">NEW</div>

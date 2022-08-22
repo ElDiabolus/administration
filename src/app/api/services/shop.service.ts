@@ -37,6 +37,51 @@ export class ShopService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiAdminShopGet$Response(params?: {
+
+    /**
+     * Organization.
+     */
+    organization_id?: string;
+
+    /**
+     * Name contains.
+     */
+    name?: string;
+
+    /**
+     * Street contains.
+     */
+    street?: string;
+
+    /**
+     * Postcode contains.
+     */
+    postcode?: string;
+
+    /**
+     * City contains.
+     */
+    city?: string;
+
+    /**
+     * Contact contains.
+     */
+    contact?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;organization_id&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;street&lt;/code&gt;, &lt;code&gt;postcode&lt;/code&gt;, &lt;code&gt;city&lt;/code&gt;, or &lt;code&gt;contact&lt;/code&gt;.
+     */
+    sort?: string;
+
+    /**
+     * Sort ascending or descending. Must be one of &lt;code&gt;asc&lt;/code&gt; or &lt;code&gt;desc&lt;/code&gt;.
+     */
+    order?: string;
+
+    /**
+     * Page to load.
+     */
+    page?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
@@ -44,6 +89,15 @@ export class ShopService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, ShopService.ApiAdminShopGetPath, 'get');
     if (params) {
+      rb.query('organization_id', params.organization_id, {});
+      rb.query('name', params.name, {});
+      rb.query('street', params.street, {});
+      rb.query('postcode', params.postcode, {});
+      rb.query('city', params.city, {});
+      rb.query('contact', params.contact, {});
+      rb.query('sort', params.sort, {});
+      rb.query('order', params.order, {});
+      rb.query('page', params.page, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -71,6 +125,51 @@ export class ShopService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiAdminShopGet(params?: {
+
+    /**
+     * Organization.
+     */
+    organization_id?: string;
+
+    /**
+     * Name contains.
+     */
+    name?: string;
+
+    /**
+     * Street contains.
+     */
+    street?: string;
+
+    /**
+     * Postcode contains.
+     */
+    postcode?: string;
+
+    /**
+     * City contains.
+     */
+    city?: string;
+
+    /**
+     * Contact contains.
+     */
+    contact?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;organization_id&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;street&lt;/code&gt;, &lt;code&gt;postcode&lt;/code&gt;, &lt;code&gt;city&lt;/code&gt;, or &lt;code&gt;contact&lt;/code&gt;.
+     */
+    sort?: string;
+
+    /**
+     * Sort ascending or descending. Must be one of &lt;code&gt;asc&lt;/code&gt; or &lt;code&gt;desc&lt;/code&gt;.
+     */
+    order?: string;
+
+    /**
+     * Page to load.
+     */
+    page?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;

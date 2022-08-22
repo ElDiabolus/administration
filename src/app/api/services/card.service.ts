@@ -13,7 +13,7 @@ import { map, filter } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class OrganizationService extends BaseService {
+export class CardService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -22,26 +22,31 @@ export class OrganizationService extends BaseService {
   }
 
   /**
-   * Path part for operation apiAdminOrganizationGet
+   * Path part for operation apiAdminCardGet
    */
-  static readonly ApiAdminOrganizationGetPath = '/api/admin/organization';
+  static readonly ApiAdminCardGetPath = '/api/admin/card';
 
   /**
-   * List all Organization.
+   * List all Cards.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminOrganizationGet()` instead.
+   * To access only the response body, use `apiAdminCardGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminOrganizationGet$Response(params?: {
+  apiAdminCardGet$Response(params?: {
 
     /**
-     * Name contains.
+     * Last name contains.
      */
-    name?: string;
+    last_name?: string;
+
+    /**
+     * First name contains.
+     */
+    first_name?: string;
 
     /**
      * Street contains.
@@ -57,14 +62,38 @@ export class OrganizationService extends BaseService {
      * City contains.
      */
     city?: string;
+    valid_from?: {
+};
 
     /**
-     * Contact contains.
+     * Valid from is after this date. Must be a valid date.
      */
-    contact?: string;
+    'valid_from.0'?: string;
 
     /**
-     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;street&lt;/code&gt;, &lt;code&gt;postcode&lt;/code&gt;, &lt;code&gt;city&lt;/code&gt;, or &lt;code&gt;contact&lt;/code&gt;.
+     * Valid from is before this date. Must be a valid date. This field is required when &lt;code&gt;valid_from.0&lt;/code&gt; is present.
+     */
+    'valid_from.1'?: string;
+    valid_until?: {
+};
+
+    /**
+     * Valid until is after this date. Must be a valid date.
+     */
+    'valid_until.0'?: string;
+
+    /**
+     * Valid until is before this date. Must be a valid date. This field is required when &lt;code&gt;valid_until.0&lt;/code&gt; is present.
+     */
+    'valid_until.1'?: string;
+
+    /**
+     * Created by user_id.
+     */
+    creator_id?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;last_name&lt;/code&gt;, &lt;code&gt;first_name&lt;/code&gt;, &lt;code&gt;street&lt;/code&gt;, &lt;code&gt;postcode&lt;/code&gt;, &lt;code&gt;city&lt;/code&gt;, &lt;code&gt;valid_from&lt;/code&gt;, &lt;code&gt;valid_until&lt;/code&gt;, or &lt;code&gt;creator_id&lt;/code&gt;.
      */
     sort?: string;
 
@@ -82,13 +111,20 @@ export class OrganizationService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, OrganizationService.ApiAdminOrganizationGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, CardService.ApiAdminCardGetPath, 'get');
     if (params) {
-      rb.query('name', params.name, {});
+      rb.query('last_name', params.last_name, {});
+      rb.query('first_name', params.first_name, {});
       rb.query('street', params.street, {});
       rb.query('postcode', params.postcode, {});
       rb.query('city', params.city, {});
-      rb.query('contact', params.contact, {});
+      rb.query('valid_from', params.valid_from, {});
+      rb.query('valid_from.0', params['valid_from.0'], {});
+      rb.query('valid_from.1', params['valid_from.1'], {});
+      rb.query('valid_until', params.valid_until, {});
+      rb.query('valid_until.0', params['valid_until.0'], {});
+      rb.query('valid_until.1', params['valid_until.1'], {});
+      rb.query('creator_id', params.creator_id, {});
       rb.query('sort', params.sort, {});
       rb.query('order', params.order, {});
       rb.query('page', params.page, {});
@@ -109,21 +145,26 @@ export class OrganizationService extends BaseService {
   }
 
   /**
-   * List all Organization.
+   * List all Cards.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminOrganizationGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminCardGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminOrganizationGet(params?: {
+  apiAdminCardGet(params?: {
 
     /**
-     * Name contains.
+     * Last name contains.
      */
-    name?: string;
+    last_name?: string;
+
+    /**
+     * First name contains.
+     */
+    first_name?: string;
 
     /**
      * Street contains.
@@ -139,14 +180,38 @@ export class OrganizationService extends BaseService {
      * City contains.
      */
     city?: string;
+    valid_from?: {
+};
 
     /**
-     * Contact contains.
+     * Valid from is after this date. Must be a valid date.
      */
-    contact?: string;
+    'valid_from.0'?: string;
 
     /**
-     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;street&lt;/code&gt;, &lt;code&gt;postcode&lt;/code&gt;, &lt;code&gt;city&lt;/code&gt;, or &lt;code&gt;contact&lt;/code&gt;.
+     * Valid from is before this date. Must be a valid date. This field is required when &lt;code&gt;valid_from.0&lt;/code&gt; is present.
+     */
+    'valid_from.1'?: string;
+    valid_until?: {
+};
+
+    /**
+     * Valid until is after this date. Must be a valid date.
+     */
+    'valid_until.0'?: string;
+
+    /**
+     * Valid until is before this date. Must be a valid date. This field is required when &lt;code&gt;valid_until.0&lt;/code&gt; is present.
+     */
+    'valid_until.1'?: string;
+
+    /**
+     * Created by user_id.
+     */
+    creator_id?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;last_name&lt;/code&gt;, &lt;code&gt;first_name&lt;/code&gt;, &lt;code&gt;street&lt;/code&gt;, &lt;code&gt;postcode&lt;/code&gt;, &lt;code&gt;city&lt;/code&gt;, &lt;code&gt;valid_from&lt;/code&gt;, &lt;code&gt;valid_until&lt;/code&gt;, or &lt;code&gt;creator_id&lt;/code&gt;.
      */
     sort?: string;
 
@@ -164,65 +229,75 @@ export class OrganizationService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminOrganizationGet$Response(params).pipe(
+    return this.apiAdminCardGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminOrganizationPost
+   * Path part for operation apiAdminCardPost
    */
-  static readonly ApiAdminOrganizationPostPath = '/api/admin/organization';
+  static readonly ApiAdminCardPostPath = '/api/admin/card';
 
   /**
-   * Create new Organization.
+   * Create new Card.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminOrganizationPost()` instead.
+   * To access only the response body, use `apiAdminCardPost()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminOrganizationPost$Response(params: {
+  apiAdminCardPost$Response(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
     body: {
 
 /**
- * ID of the instance the organization is attached to.
+ * Last name of the cardholder.
  */
-'instance_id': string;
+'last_name': string;
 
 /**
- * Name of the organization.
+ * First name of the cardholder.
  */
-'name': string;
+'first_name': string;
 
 /**
- * Street where the organization is located.
+ * Street where the cardholder is located.
  */
-'street': string;
+'street'?: string;
 
 /**
- * Postcode where the organization is located.
+ * Postcode where the cardholder is located.
  */
-'postcode': string;
+'postcode'?: string;
 
 /**
- * City where the organization is located.
+ * City where the cardholder is located.
  */
-'city': string;
+'city'?: string;
 
 /**
- * Contact information from the organization.
+ * Date and time of the start of validity of the card. Must be a valid date.
  */
-'contact': string;
+'valid_from': string;
+
+/**
+ * Date and time of the expiry of the card. Must be a valid date.
+ */
+'valid_until': string;
+
+/**
+ * ID of the User the card is attached to.
+ */
+'creator_id': string;
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, OrganizationService.ApiAdminOrganizationPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, CardService.ApiAdminCardPostPath, 'post');
     if (params) {
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
@@ -242,77 +317,87 @@ export class OrganizationService extends BaseService {
   }
 
   /**
-   * Create new Organization.
+   * Create new Card.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminOrganizationPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminCardPost$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminOrganizationPost(params: {
+  apiAdminCardPost(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
     body: {
 
 /**
- * ID of the instance the organization is attached to.
+ * Last name of the cardholder.
  */
-'instance_id': string;
+'last_name': string;
 
 /**
- * Name of the organization.
+ * First name of the cardholder.
  */
-'name': string;
+'first_name': string;
 
 /**
- * Street where the organization is located.
+ * Street where the cardholder is located.
  */
-'street': string;
+'street'?: string;
 
 /**
- * Postcode where the organization is located.
+ * Postcode where the cardholder is located.
  */
-'postcode': string;
+'postcode'?: string;
 
 /**
- * City where the organization is located.
+ * City where the cardholder is located.
  */
-'city': string;
+'city'?: string;
 
 /**
- * Contact information from the organization.
+ * Date and time of the start of validity of the card. Must be a valid date.
  */
-'contact': string;
+'valid_from': string;
+
+/**
+ * Date and time of the expiry of the card. Must be a valid date.
+ */
+'valid_until': string;
+
+/**
+ * ID of the User the card is attached to.
+ */
+'creator_id': string;
 }
   }): Observable<void> {
 
-    return this.apiAdminOrganizationPost$Response(params).pipe(
+    return this.apiAdminCardPost$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminOrganizationIdGet
+   * Path part for operation apiAdminCardIdGet
    */
-  static readonly ApiAdminOrganizationIdGetPath = '/api/admin/organization/{id}';
+  static readonly ApiAdminCardIdGetPath = '/api/admin/card/{id}';
 
   /**
-   * Show specified Organization.
+   * Show specified Card.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminOrganizationIdGet()` instead.
+   * To access only the response body, use `apiAdminCardIdGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminOrganizationIdGet$Response(params: {
+  apiAdminCardIdGet$Response(params: {
 
     /**
-     * The ID of the organization.
+     * The ID of the card.
      */
     id: number;
     Authorization?: string;
@@ -320,7 +405,7 @@ export class OrganizationService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, OrganizationService.ApiAdminOrganizationIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, CardService.ApiAdminCardIdGetPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -340,19 +425,19 @@ export class OrganizationService extends BaseService {
   }
 
   /**
-   * Show specified Organization.
+   * Show specified Card.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminOrganizationIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminCardIdGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminOrganizationIdGet(params: {
+  apiAdminCardIdGet(params: {
 
     /**
-     * The ID of the organization.
+     * The ID of the card.
      */
     id: number;
     Authorization?: string;
@@ -360,30 +445,30 @@ export class OrganizationService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminOrganizationIdGet$Response(params).pipe(
+    return this.apiAdminCardIdGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminOrganizationIdPut
+   * Path part for operation apiAdminCardIdPut
    */
-  static readonly ApiAdminOrganizationIdPutPath = '/api/admin/organization/{id}';
+  static readonly ApiAdminCardIdPutPath = '/api/admin/card/{id}';
 
   /**
-   * Update specified Organization.
+   * Update specified Card.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminOrganizationIdPut()` instead.
+   * To access only the response body, use `apiAdminCardIdPut()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminOrganizationIdPut$Response(params: {
+  apiAdminCardIdPut$Response(params: {
 
     /**
-     * The ID of the organization.
+     * The ID of the card.
      */
     id: number;
     Authorization?: string;
@@ -392,38 +477,48 @@ export class OrganizationService extends BaseService {
     body: {
 
 /**
- * ID of the instance the organization is attached to.
+ * Last name of the cardholder.
  */
-'instance_id': string;
+'last_name': string;
 
 /**
- * Name of the organization.
+ * First name of the cardholder.
  */
-'name': string;
+'first_name': string;
 
 /**
- * Street where the organization is located.
+ * Street where the cardholder is located.
  */
-'street': string;
+'street'?: string;
 
 /**
- * Postcode where the organization is located.
+ * Postcode where the cardholder is located.
  */
-'postcode': string;
+'postcode'?: string;
 
 /**
- * City where the organization is located.
+ * City where the cardholder is located.
  */
-'city': string;
+'city'?: string;
 
 /**
- * Contact information from the organization.
+ * Date and time of the start of validity of the card. Must be a valid date.
  */
-'contact': string;
+'valid_from': string;
+
+/**
+ * Date and time of the expiry of the card. Must be a valid date.
+ */
+'valid_until': string;
+
+/**
+ * ID of the User the card is attached to.
+ */
+'creator_id': string;
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, OrganizationService.ApiAdminOrganizationIdPutPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, CardService.ApiAdminCardIdPutPath, 'put');
     if (params) {
       rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -444,19 +539,19 @@ export class OrganizationService extends BaseService {
   }
 
   /**
-   * Update specified Organization.
+   * Update specified Card.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminOrganizationIdPut$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminCardIdPut$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminOrganizationIdPut(params: {
+  apiAdminCardIdPut(params: {
 
     /**
-     * The ID of the organization.
+     * The ID of the card.
      */
     id: number;
     Authorization?: string;
@@ -465,61 +560,71 @@ export class OrganizationService extends BaseService {
     body: {
 
 /**
- * ID of the instance the organization is attached to.
+ * Last name of the cardholder.
  */
-'instance_id': string;
+'last_name': string;
 
 /**
- * Name of the organization.
+ * First name of the cardholder.
  */
-'name': string;
+'first_name': string;
 
 /**
- * Street where the organization is located.
+ * Street where the cardholder is located.
  */
-'street': string;
+'street'?: string;
 
 /**
- * Postcode where the organization is located.
+ * Postcode where the cardholder is located.
  */
-'postcode': string;
+'postcode'?: string;
 
 /**
- * City where the organization is located.
+ * City where the cardholder is located.
  */
-'city': string;
+'city'?: string;
 
 /**
- * Contact information from the organization.
+ * Date and time of the start of validity of the card. Must be a valid date.
  */
-'contact': string;
+'valid_from': string;
+
+/**
+ * Date and time of the expiry of the card. Must be a valid date.
+ */
+'valid_until': string;
+
+/**
+ * ID of the User the card is attached to.
+ */
+'creator_id': string;
 }
   }): Observable<void> {
 
-    return this.apiAdminOrganizationIdPut$Response(params).pipe(
+    return this.apiAdminCardIdPut$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminOrganizationIdDelete
+   * Path part for operation apiAdminCardIdDelete
    */
-  static readonly ApiAdminOrganizationIdDeletePath = '/api/admin/organization/{id}';
+  static readonly ApiAdminCardIdDeletePath = '/api/admin/card/{id}';
 
   /**
-   * Delete specified Organization.
+   * Delete specified Card.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminOrganizationIdDelete()` instead.
+   * To access only the response body, use `apiAdminCardIdDelete()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminOrganizationIdDelete$Response(params: {
+  apiAdminCardIdDelete$Response(params: {
 
     /**
-     * The ID of the organization.
+     * The ID of the card.
      */
     id: number;
     Authorization?: string;
@@ -527,7 +632,7 @@ export class OrganizationService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, OrganizationService.ApiAdminOrganizationIdDeletePath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, CardService.ApiAdminCardIdDeletePath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -547,19 +652,19 @@ export class OrganizationService extends BaseService {
   }
 
   /**
-   * Delete specified Organization.
+   * Delete specified Card.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminOrganizationIdDelete$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminCardIdDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminOrganizationIdDelete(params: {
+  apiAdminCardIdDelete(params: {
 
     /**
-     * The ID of the organization.
+     * The ID of the card.
      */
     id: number;
     Authorization?: string;
@@ -567,7 +672,7 @@ export class OrganizationService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminOrganizationIdDelete$Response(params).pipe(
+    return this.apiAdminCardIdDelete$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

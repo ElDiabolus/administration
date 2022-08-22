@@ -22,9 +22,9 @@ export class ProductTypeService extends BaseService {
   }
 
   /**
-   * Path part for operation apiAdminProductTypesGet
+   * Path part for operation apiAdminProductTypeGet
    */
-  static readonly ApiAdminProductTypesGetPath = '/api/admin/product-types';
+  static readonly ApiAdminProductTypeGetPath = '/api/admin/product-type';
 
   /**
    * List all ProductTypes.
@@ -32,18 +32,48 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminProductTypesGet()` instead.
+   * To access only the response body, use `apiAdminProductTypeGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminProductTypesGet$Response(params?: {
+  apiAdminProductTypeGet$Response(params?: {
+
+    /**
+     * Name contains.
+     */
+    name?: string;
+
+    /**
+     * Icon contains.
+     */
+    icon?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, or &lt;code&gt;icon&lt;/code&gt;.
+     */
+    sort?: string;
+
+    /**
+     * Sort ascending or descending. Must be one of &lt;code&gt;asc&lt;/code&gt; or &lt;code&gt;desc&lt;/code&gt;.
+     */
+    order?: string;
+
+    /**
+     * Page to load.
+     */
+    page?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypesGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypeGetPath, 'get');
     if (params) {
+      rb.query('name', params.name, {});
+      rb.query('icon', params.icon, {});
+      rb.query('sort', params.sort, {});
+      rb.query('order', params.order, {});
+      rb.query('page', params.page, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -66,25 +96,50 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminProductTypesGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminProductTypeGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminProductTypesGet(params?: {
+  apiAdminProductTypeGet(params?: {
+
+    /**
+     * Name contains.
+     */
+    name?: string;
+
+    /**
+     * Icon contains.
+     */
+    icon?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, or &lt;code&gt;icon&lt;/code&gt;.
+     */
+    sort?: string;
+
+    /**
+     * Sort ascending or descending. Must be one of &lt;code&gt;asc&lt;/code&gt; or &lt;code&gt;desc&lt;/code&gt;.
+     */
+    order?: string;
+
+    /**
+     * Page to load.
+     */
+    page?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminProductTypesGet$Response(params).pipe(
+    return this.apiAdminProductTypeGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminProductTypesPost
+   * Path part for operation apiAdminProductTypePost
    */
-  static readonly ApiAdminProductTypesPostPath = '/api/admin/product-types';
+  static readonly ApiAdminProductTypePostPath = '/api/admin/product-type';
 
   /**
    * Create new ProductType.
@@ -92,11 +147,11 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminProductTypesPost()` instead.
+   * To access only the response body, use `apiAdminProductTypePost()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminProductTypesPost$Response(params: {
+  apiAdminProductTypePost$Response(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
@@ -114,7 +169,7 @@ export class ProductTypeService extends BaseService {
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypesPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypePostPath, 'post');
     if (params) {
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
@@ -139,11 +194,11 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminProductTypesPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminProductTypePost$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminProductTypesPost(params: {
+  apiAdminProductTypePost(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
@@ -161,15 +216,15 @@ export class ProductTypeService extends BaseService {
 }
   }): Observable<void> {
 
-    return this.apiAdminProductTypesPost$Response(params).pipe(
+    return this.apiAdminProductTypePost$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminProductTypesProductTypeIdGet
+   * Path part for operation apiAdminProductTypeProductTypeIdGet
    */
-  static readonly ApiAdminProductTypesProductTypeIdGetPath = '/api/admin/product-types/{productType_id}';
+  static readonly ApiAdminProductTypeProductTypeIdGetPath = '/api/admin/product-type/{productType_id}';
 
   /**
    * Show specified ProductType.
@@ -177,11 +232,11 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminProductTypesProductTypeIdGet()` instead.
+   * To access only the response body, use `apiAdminProductTypeProductTypeIdGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminProductTypesProductTypeIdGet$Response(params: {
+  apiAdminProductTypeProductTypeIdGet$Response(params: {
 
     /**
      * The ID of the productType.
@@ -192,7 +247,7 @@ export class ProductTypeService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypesProductTypeIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypeProductTypeIdGetPath, 'get');
     if (params) {
       rb.path('productType_id', params.productType_id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -217,11 +272,11 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminProductTypesProductTypeIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminProductTypeProductTypeIdGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminProductTypesProductTypeIdGet(params: {
+  apiAdminProductTypeProductTypeIdGet(params: {
 
     /**
      * The ID of the productType.
@@ -232,15 +287,15 @@ export class ProductTypeService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminProductTypesProductTypeIdGet$Response(params).pipe(
+    return this.apiAdminProductTypeProductTypeIdGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminProductTypesProductTypeIdPut
+   * Path part for operation apiAdminProductTypeProductTypeIdPut
    */
-  static readonly ApiAdminProductTypesProductTypeIdPutPath = '/api/admin/product-types/{productType_id}';
+  static readonly ApiAdminProductTypeProductTypeIdPutPath = '/api/admin/product-type/{productType_id}';
 
   /**
    * Update specified ProductType.
@@ -248,11 +303,11 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminProductTypesProductTypeIdPut()` instead.
+   * To access only the response body, use `apiAdminProductTypeProductTypeIdPut()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminProductTypesProductTypeIdPut$Response(params: {
+  apiAdminProductTypeProductTypeIdPut$Response(params: {
 
     /**
      * The ID of the productType.
@@ -275,7 +330,7 @@ export class ProductTypeService extends BaseService {
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypesProductTypeIdPutPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypeProductTypeIdPutPath, 'put');
     if (params) {
       rb.path('productType_id', params.productType_id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -301,11 +356,11 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminProductTypesProductTypeIdPut$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminProductTypeProductTypeIdPut$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminProductTypesProductTypeIdPut(params: {
+  apiAdminProductTypeProductTypeIdPut(params: {
 
     /**
      * The ID of the productType.
@@ -328,15 +383,15 @@ export class ProductTypeService extends BaseService {
 }
   }): Observable<void> {
 
-    return this.apiAdminProductTypesProductTypeIdPut$Response(params).pipe(
+    return this.apiAdminProductTypeProductTypeIdPut$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminProductTypesProductTypeIdDelete
+   * Path part for operation apiAdminProductTypeProductTypeIdDelete
    */
-  static readonly ApiAdminProductTypesProductTypeIdDeletePath = '/api/admin/product-types/{productType_id}';
+  static readonly ApiAdminProductTypeProductTypeIdDeletePath = '/api/admin/product-type/{productType_id}';
 
   /**
    * Delete specified ProductType.
@@ -344,11 +399,11 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminProductTypesProductTypeIdDelete()` instead.
+   * To access only the response body, use `apiAdminProductTypeProductTypeIdDelete()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminProductTypesProductTypeIdDelete$Response(params: {
+  apiAdminProductTypeProductTypeIdDelete$Response(params: {
 
     /**
      * The ID of the productType.
@@ -359,7 +414,7 @@ export class ProductTypeService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypesProductTypeIdDeletePath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, ProductTypeService.ApiAdminProductTypeProductTypeIdDeletePath, 'delete');
     if (params) {
       rb.path('productType_id', params.productType_id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -384,11 +439,11 @@ export class ProductTypeService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminProductTypesProductTypeIdDelete$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminProductTypeProductTypeIdDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminProductTypesProductTypeIdDelete(params: {
+  apiAdminProductTypeProductTypeIdDelete(params: {
 
     /**
      * The ID of the productType.
@@ -399,7 +454,7 @@ export class ProductTypeService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminProductTypesProductTypeIdDelete$Response(params).pipe(
+    return this.apiAdminProductTypeProductTypeIdDelete$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

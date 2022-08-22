@@ -10,9 +10,19 @@ export class OrganizationListComponent implements OnInit {
 
   constructor(protected organizationService : OrganizationService) { }
 
-  ngOnInit(): void {
-    this.organizationService.apiAdminOrganizationGet().toPromise().then(() => {
+  public listItems;
 
+  ngOnInit(): void {
+
+    let me = this;
+
+    this.organizationService.apiAdminOrganizationGet().subscribe({
+      next(response) {
+        me.listItems = response;
+      },
+      error(msg) {
+        console.log('Error Getting Location: ', msg);
+      }
     });
   }
 

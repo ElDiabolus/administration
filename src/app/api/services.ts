@@ -1,8 +1,15 @@
+export { ScheduleService } from './services/schedule.service';
 export { AuthenticationService } from './services/authentication.service';
+export { CardService } from './services/card.service';
+export { CheckoutService } from './services/checkout.service';
 export { LimitationService } from './services/limitation.service';
 export { LimitationSetService } from './services/limitation-set.service';
+export { LineItemService } from './services/line-item.service';
 export { OrganizationService } from './services/organization.service';
+export { PdfService } from './services/pdf.service';
+export { PersonService } from './services/person.service';
 export { ProductTypeService } from './services/product-type.service';
 export { ReservationService } from './services/reservation.service';
 export { ShopService } from './services/shop.service';
 export { UserService } from './services/user.service';
+export { VisitService } from './services/visit.service';

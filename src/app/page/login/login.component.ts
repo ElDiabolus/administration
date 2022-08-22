@@ -14,23 +14,21 @@ export class LoginComponent implements OnInit {
   constructor(protected authApiService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.authApiService.apiHandshakeGet().toPromise().then(() => {
-      console.log("SHAKED");
-    });
   }
 
   login()
   {
-    this.authApiService.apiAuthTokenPost({
+    this.authApiService.apiAuthLoginPost({
       body: {
 
         'email': this.name,
         'password': this.pw,
-        device_name: "Angular Web Device"
+        //device_name: "Angular Web Device"
       }
-    }).toPromise().then(() => {
-      console.log("SF");
+    }).toPromise().then((resp) => {
+      localStorage.hasLogin = 1;
     });
+
   }
 
 }

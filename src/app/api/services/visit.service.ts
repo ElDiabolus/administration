@@ -13,7 +13,7 @@ import { map, filter } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends BaseService {
+export class VisitService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -22,39 +22,34 @@ export class UserService extends BaseService {
   }
 
   /**
-   * Path part for operation apiAdminUserGet
+   * Path part for operation apiAdminVisitGet
    */
-  static readonly ApiAdminUserGetPath = '/api/admin/user';
+  static readonly ApiAdminVisitGetPath = '/api/admin/visit';
 
   /**
-   * List all Users.
+   * List all Visits.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminUserGet()` instead.
+   * To access only the response body, use `apiAdminVisitGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminUserGet$Response(params?: {
+  apiAdminVisitGet$Response(params?: {
 
     /**
-     * Organization.
+     * Card.
      */
-    organization_id?: string;
+    card_id?: string;
 
     /**
-     * Name contains.
+     * User.
      */
-    name?: string;
+    user_id?: string;
 
     /**
-     * E-Mail contains.
-     */
-    email?: string;
-
-    /**
-     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;organization_id&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, or &lt;code&gt;email&lt;/code&gt;.
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;card_id&lt;/code&gt;, or &lt;code&gt;user_id&lt;/code&gt;.
      */
     sort?: string;
 
@@ -72,11 +67,10 @@ export class UserService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UserService.ApiAdminUserGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, VisitService.ApiAdminVisitGetPath, 'get');
     if (params) {
-      rb.query('organization_id', params.organization_id, {});
-      rb.query('name', params.name, {});
-      rb.query('email', params.email, {});
+      rb.query('card_id', params.card_id, {});
+      rb.query('user_id', params.user_id, {});
       rb.query('sort', params.sort, {});
       rb.query('order', params.order, {});
       rb.query('page', params.page, {});
@@ -97,34 +91,29 @@ export class UserService extends BaseService {
   }
 
   /**
-   * List all Users.
+   * List all Visits.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminUserGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminVisitGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminUserGet(params?: {
+  apiAdminVisitGet(params?: {
 
     /**
-     * Organization.
+     * Card.
      */
-    organization_id?: string;
+    card_id?: string;
 
     /**
-     * Name contains.
+     * User.
      */
-    name?: string;
+    user_id?: string;
 
     /**
-     * E-Mail contains.
-     */
-    email?: string;
-
-    /**
-     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;organization_id&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, or &lt;code&gt;email&lt;/code&gt;.
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;card_id&lt;/code&gt;, or &lt;code&gt;user_id&lt;/code&gt;.
      */
     sort?: string;
 
@@ -142,60 +131,45 @@ export class UserService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminUserGet$Response(params).pipe(
+    return this.apiAdminVisitGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminUserPost
+   * Path part for operation apiAdminVisitPost
    */
-  static readonly ApiAdminUserPostPath = '/api/admin/user';
+  static readonly ApiAdminVisitPostPath = '/api/admin/visit';
 
   /**
-   * Create new User.
+   * Create new Visit.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminUserPost()` instead.
+   * To access only the response body, use `apiAdminVisitPost()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminUserPost$Response(params: {
+  apiAdminVisitPost$Response(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
     body: {
 
 /**
- * ID of the instance the user is attached to.
+ * ID of the card the visit is attached to.
  */
-'instance_id': string;
+'card_id': string;
 
 /**
- * ID of the organization the user is attached to.
+ * ID of the user the visit is attached to.
  */
-'organization_id': string;
-
-/**
- * Name of the user.
- */
-'name': string;
-
-/**
- * Email of the user. Must be a valid email address.
- */
-'email': string;
-
-/**
- * Password of the user.
- */
-'password': string;
+'user_id': string;
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UserService.ApiAdminUserPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, VisitService.ApiAdminVisitPostPath, 'post');
     if (params) {
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
@@ -215,72 +189,57 @@ export class UserService extends BaseService {
   }
 
   /**
-   * Create new User.
+   * Create new Visit.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminUserPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminVisitPost$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminUserPost(params: {
+  apiAdminVisitPost(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
     body: {
 
 /**
- * ID of the instance the user is attached to.
+ * ID of the card the visit is attached to.
  */
-'instance_id': string;
+'card_id': string;
 
 /**
- * ID of the organization the user is attached to.
+ * ID of the user the visit is attached to.
  */
-'organization_id': string;
-
-/**
- * Name of the user.
- */
-'name': string;
-
-/**
- * Email of the user. Must be a valid email address.
- */
-'email': string;
-
-/**
- * Password of the user.
- */
-'password': string;
+'user_id': string;
 }
   }): Observable<void> {
 
-    return this.apiAdminUserPost$Response(params).pipe(
+    return this.apiAdminVisitPost$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminUserIdGet
+   * Path part for operation apiAdminVisitIdGet
    */
-  static readonly ApiAdminUserIdGetPath = '/api/admin/user/{id}';
+  static readonly ApiAdminVisitIdGetPath = '/api/admin/visit/{id}';
 
   /**
-   * Show specified User.
+   * Show specified Visit.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminUserIdGet()` instead.
+   * To access only the response body, use `apiAdminVisitIdGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminUserIdGet$Response(params: {
+  apiAdminVisitIdGet$Response(params: {
 
     /**
-     * The ID of the user.
+     * The ID of the visit.
      */
     id: number;
     Authorization?: string;
@@ -288,7 +247,7 @@ export class UserService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UserService.ApiAdminUserIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, VisitService.ApiAdminVisitIdGetPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -308,19 +267,19 @@ export class UserService extends BaseService {
   }
 
   /**
-   * Show specified User.
+   * Show specified Visit.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminUserIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminVisitIdGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminUserIdGet(params: {
+  apiAdminVisitIdGet(params: {
 
     /**
-     * The ID of the user.
+     * The ID of the visit.
      */
     id: number;
     Authorization?: string;
@@ -328,30 +287,30 @@ export class UserService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminUserIdGet$Response(params).pipe(
+    return this.apiAdminVisitIdGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminUserIdPut
+   * Path part for operation apiAdminVisitIdPut
    */
-  static readonly ApiAdminUserIdPutPath = '/api/admin/user/{id}';
+  static readonly ApiAdminVisitIdPutPath = '/api/admin/visit/{id}';
 
   /**
-   * Update specified User.
+   * Update specified Visit.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminUserIdPut()` instead.
+   * To access only the response body, use `apiAdminVisitIdPut()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminUserIdPut$Response(params: {
+  apiAdminVisitIdPut$Response(params: {
 
     /**
-     * The ID of the user.
+     * The ID of the visit.
      */
     id: number;
     Authorization?: string;
@@ -360,33 +319,18 @@ export class UserService extends BaseService {
     body: {
 
 /**
- * ID of the instance the user is attached to.
+ * ID of the card the visit is attached to.
  */
-'instance_id': string;
+'card_id': string;
 
 /**
- * ID of the organization the user is attached to.
+ * ID of the user the visit is attached to.
  */
-'organization_id': string;
-
-/**
- * Name of the user.
- */
-'name': string;
-
-/**
- * Email of the user. Must be a valid email address.
- */
-'email': string;
-
-/**
- * Password of the user.
- */
-'password': string;
+'user_id': string;
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UserService.ApiAdminUserIdPutPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, VisitService.ApiAdminVisitIdPutPath, 'put');
     if (params) {
       rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -407,19 +351,19 @@ export class UserService extends BaseService {
   }
 
   /**
-   * Update specified User.
+   * Update specified Visit.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminUserIdPut$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminVisitIdPut$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminUserIdPut(params: {
+  apiAdminVisitIdPut(params: {
 
     /**
-     * The ID of the user.
+     * The ID of the visit.
      */
     id: number;
     Authorization?: string;
@@ -428,56 +372,41 @@ export class UserService extends BaseService {
     body: {
 
 /**
- * ID of the instance the user is attached to.
+ * ID of the card the visit is attached to.
  */
-'instance_id': string;
+'card_id': string;
 
 /**
- * ID of the organization the user is attached to.
+ * ID of the user the visit is attached to.
  */
-'organization_id': string;
-
-/**
- * Name of the user.
- */
-'name': string;
-
-/**
- * Email of the user. Must be a valid email address.
- */
-'email': string;
-
-/**
- * Password of the user.
- */
-'password': string;
+'user_id': string;
 }
   }): Observable<void> {
 
-    return this.apiAdminUserIdPut$Response(params).pipe(
+    return this.apiAdminVisitIdPut$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminUserIdDelete
+   * Path part for operation apiAdminVisitIdDelete
    */
-  static readonly ApiAdminUserIdDeletePath = '/api/admin/user/{id}';
+  static readonly ApiAdminVisitIdDeletePath = '/api/admin/visit/{id}';
 
   /**
-   * Delete specified User.
+   * Delete specified Visit.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminUserIdDelete()` instead.
+   * To access only the response body, use `apiAdminVisitIdDelete()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminUserIdDelete$Response(params: {
+  apiAdminVisitIdDelete$Response(params: {
 
     /**
-     * The ID of the user.
+     * The ID of the visit.
      */
     id: number;
     Authorization?: string;
@@ -485,7 +414,7 @@ export class UserService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UserService.ApiAdminUserIdDeletePath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, VisitService.ApiAdminVisitIdDeletePath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -505,19 +434,19 @@ export class UserService extends BaseService {
   }
 
   /**
-   * Delete specified User.
+   * Delete specified Visit.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminUserIdDelete$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminVisitIdDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminUserIdDelete(params: {
+  apiAdminVisitIdDelete(params: {
 
     /**
-     * The ID of the user.
+     * The ID of the visit.
      */
     id: number;
     Authorization?: string;
@@ -525,7 +454,7 @@ export class UserService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminUserIdDelete$Response(params).pipe(
+    return this.apiAdminVisitIdDelete$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

@@ -1,6 +1,10 @@
-<app-login *ngIf="!isLoggedIn()"></app-login>
-<ng-container *ngIf="isLoggedIn()">
-  <a routerLink="/organization-list">Organisationen</a>
-  <app-login></app-login>
-  <router-outlet></router-outlet>
+<ng-container *ngIf="appInitialized">
+  <app-login *ngIf="!isLoggedIn()"></app-login>
+  <ng-container *ngIf="isLoggedIn()">
+    <a routerLink="/organization-list">Organisationen</a>
+    <router-outlet></router-outlet>
+  </ng-container>
+</ng-container>
+<ng-container *ngIf="!appInitialized">
+  init...
 </ng-container>

@@ -68,7 +68,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "caritas-administration:build"
+            "browserTarget": "caritas-administration:build",
+            "ssl": true,
+            "sslKey": "privkey1.pem",
+            "sslCert": "cert1.pem",
+            "disableHostCheck": true
           },
           "configurations": {
             "production": {

@@ -22,9 +22,9 @@ export class LimitationService extends BaseService {
   }
 
   /**
-   * Path part for operation apiAdminLimitationLimitsGet
+   * Path part for operation apiAdminLimitationLimitGet
    */
-  static readonly ApiAdminLimitationLimitsGetPath = '/api/admin/limitation/limits';
+  static readonly ApiAdminLimitationLimitGetPath = '/api/admin/limitation/limit';
 
   /**
    * List all Limitation.
@@ -32,18 +32,48 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminLimitationLimitsGet()` instead.
+   * To access only the response body, use `apiAdminLimitationLimitGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminLimitationLimitsGet$Response(params?: {
+  apiAdminLimitationLimitGet$Response(params?: {
+
+    /**
+     * Limitation Set.
+     */
+    limitation_set_id?: string;
+
+    /**
+     * Product Type.
+     */
+    product_type_id?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;limitation_set_id&lt;/code&gt;, &lt;code&gt;product_type_id&lt;/code&gt;, or &lt;code&gt;limit&lt;/code&gt;.
+     */
+    sort?: string;
+
+    /**
+     * Sort ascending or descending. Must be one of &lt;code&gt;asc&lt;/code&gt; or &lt;code&gt;desc&lt;/code&gt;.
+     */
+    order?: string;
+
+    /**
+     * Page to load.
+     */
+    page?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitsGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitGetPath, 'get');
     if (params) {
+      rb.query('limitation_set_id', params.limitation_set_id, {});
+      rb.query('product_type_id', params.product_type_id, {});
+      rb.query('sort', params.sort, {});
+      rb.query('order', params.order, {});
+      rb.query('page', params.page, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -66,25 +96,50 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminLimitationLimitsGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminLimitationLimitGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminLimitationLimitsGet(params?: {
+  apiAdminLimitationLimitGet(params?: {
+
+    /**
+     * Limitation Set.
+     */
+    limitation_set_id?: string;
+
+    /**
+     * Product Type.
+     */
+    product_type_id?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;limitation_set_id&lt;/code&gt;, &lt;code&gt;product_type_id&lt;/code&gt;, or &lt;code&gt;limit&lt;/code&gt;.
+     */
+    sort?: string;
+
+    /**
+     * Sort ascending or descending. Must be one of &lt;code&gt;asc&lt;/code&gt; or &lt;code&gt;desc&lt;/code&gt;.
+     */
+    order?: string;
+
+    /**
+     * Page to load.
+     */
+    page?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminLimitationLimitsGet$Response(params).pipe(
+    return this.apiAdminLimitationLimitGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminLimitationLimitsPost
+   * Path part for operation apiAdminLimitationLimitPost
    */
-  static readonly ApiAdminLimitationLimitsPostPath = '/api/admin/limitation/limits';
+  static readonly ApiAdminLimitationLimitPostPath = '/api/admin/limitation/limit';
 
   /**
    * Create new Limitation.
@@ -92,11 +147,11 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminLimitationLimitsPost()` instead.
+   * To access only the response body, use `apiAdminLimitationLimitPost()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminLimitationLimitsPost$Response(params: {
+  apiAdminLimitationLimitPost$Response(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
@@ -119,7 +174,7 @@ export class LimitationService extends BaseService {
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitsPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitPostPath, 'post');
     if (params) {
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
@@ -144,11 +199,11 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminLimitationLimitsPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminLimitationLimitPost$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminLimitationLimitsPost(params: {
+  apiAdminLimitationLimitPost(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
@@ -171,15 +226,15 @@ export class LimitationService extends BaseService {
 }
   }): Observable<void> {
 
-    return this.apiAdminLimitationLimitsPost$Response(params).pipe(
+    return this.apiAdminLimitationLimitPost$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminLimitationLimitsLimitationIdGet
+   * Path part for operation apiAdminLimitationLimitLimitationIdGet
    */
-  static readonly ApiAdminLimitationLimitsLimitationIdGetPath = '/api/admin/limitation/limits/{limitation_id}';
+  static readonly ApiAdminLimitationLimitLimitationIdGetPath = '/api/admin/limitation/limit/{limitation_id}';
 
   /**
    * Show specified Limitation.
@@ -187,11 +242,11 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminLimitationLimitsLimitationIdGet()` instead.
+   * To access only the response body, use `apiAdminLimitationLimitLimitationIdGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminLimitationLimitsLimitationIdGet$Response(params: {
+  apiAdminLimitationLimitLimitationIdGet$Response(params: {
 
     /**
      * The ID of the limitation.
@@ -202,7 +257,7 @@ export class LimitationService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitsLimitationIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitLimitationIdGetPath, 'get');
     if (params) {
       rb.path('limitation_id', params.limitation_id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -227,11 +282,11 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminLimitationLimitsLimitationIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminLimitationLimitLimitationIdGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminLimitationLimitsLimitationIdGet(params: {
+  apiAdminLimitationLimitLimitationIdGet(params: {
 
     /**
      * The ID of the limitation.
@@ -242,15 +297,15 @@ export class LimitationService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminLimitationLimitsLimitationIdGet$Response(params).pipe(
+    return this.apiAdminLimitationLimitLimitationIdGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminLimitationLimitsLimitationIdPut
+   * Path part for operation apiAdminLimitationLimitLimitationIdPut
    */
-  static readonly ApiAdminLimitationLimitsLimitationIdPutPath = '/api/admin/limitation/limits/{limitation_id}';
+  static readonly ApiAdminLimitationLimitLimitationIdPutPath = '/api/admin/limitation/limit/{limitation_id}';
 
   /**
    * Update specified Limitation.
@@ -258,11 +313,11 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminLimitationLimitsLimitationIdPut()` instead.
+   * To access only the response body, use `apiAdminLimitationLimitLimitationIdPut()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminLimitationLimitsLimitationIdPut$Response(params: {
+  apiAdminLimitationLimitLimitationIdPut$Response(params: {
 
     /**
      * The ID of the limitation.
@@ -290,7 +345,7 @@ export class LimitationService extends BaseService {
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitsLimitationIdPutPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitLimitationIdPutPath, 'put');
     if (params) {
       rb.path('limitation_id', params.limitation_id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -316,11 +371,11 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminLimitationLimitsLimitationIdPut$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminLimitationLimitLimitationIdPut$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiAdminLimitationLimitsLimitationIdPut(params: {
+  apiAdminLimitationLimitLimitationIdPut(params: {
 
     /**
      * The ID of the limitation.
@@ -348,15 +403,15 @@ export class LimitationService extends BaseService {
 }
   }): Observable<void> {
 
-    return this.apiAdminLimitationLimitsLimitationIdPut$Response(params).pipe(
+    return this.apiAdminLimitationLimitLimitationIdPut$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiAdminLimitationLimitsLimitationIdDelete
+   * Path part for operation apiAdminLimitationLimitLimitationIdDelete
    */
-  static readonly ApiAdminLimitationLimitsLimitationIdDeletePath = '/api/admin/limitation/limits/{limitation_id}';
+  static readonly ApiAdminLimitationLimitLimitationIdDeletePath = '/api/admin/limitation/limit/{limitation_id}';
 
   /**
    * Delete specified Limitation.
@@ -364,11 +419,11 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAdminLimitationLimitsLimitationIdDelete()` instead.
+   * To access only the response body, use `apiAdminLimitationLimitLimitationIdDelete()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminLimitationLimitsLimitationIdDelete$Response(params: {
+  apiAdminLimitationLimitLimitationIdDelete$Response(params: {
 
     /**
      * The ID of the limitation.
@@ -379,7 +434,7 @@ export class LimitationService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitsLimitationIdDeletePath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, LimitationService.ApiAdminLimitationLimitLimitationIdDeletePath, 'delete');
     if (params) {
       rb.path('limitation_id', params.limitation_id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -404,11 +459,11 @@ export class LimitationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiAdminLimitationLimitsLimitationIdDelete$Response()` instead.
+   * To access the full response (for headers, for example), `apiAdminLimitationLimitLimitationIdDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAdminLimitationLimitsLimitationIdDelete(params: {
+  apiAdminLimitationLimitLimitationIdDelete(params: {
 
     /**
      * The ID of the limitation.
@@ -419,7 +474,7 @@ export class LimitationService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiAdminLimitationLimitsLimitationIdDelete$Response(params).pipe(
+    return this.apiAdminLimitationLimitLimitationIdDelete$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

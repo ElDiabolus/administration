@@ -22,9 +22,9 @@ export class ReservationService extends BaseService {
   }
 
   /**
-   * Path part for operation apiReservationsGet
+   * Path part for operation apiReservationGet
    */
-  static readonly ApiReservationsGetPath = '/api/reservations';
+  static readonly ApiReservationGetPath = '/api/reservation';
 
   /**
    * List all Reservations.
@@ -32,18 +32,63 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiReservationsGet()` instead.
+   * To access only the response body, use `apiReservationGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiReservationsGet$Response(params?: {
+  apiReservationGet$Response(params?: {
+
+    /**
+     * Card.
+     */
+    card_id?: string;
+
+    /**
+     * Shop.
+     */
+    shop_id?: string;
+    time?: {
+};
+
+    /**
+     * Time is after this date. Must be a valid date.
+     */
+    'time.0'?: string;
+
+    /**
+     * Time is before this date. Must be a valid date. This field is required when &lt;code&gt;time.0&lt;/code&gt; is present.
+     */
+    'time.1'?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;card_id&lt;/code&gt;, &lt;code&gt;shop_id&lt;/code&gt;, or &lt;code&gt;time&lt;/code&gt;.
+     */
+    sort?: string;
+
+    /**
+     * Sort ascending or descending. Must be one of &lt;code&gt;asc&lt;/code&gt; or &lt;code&gt;desc&lt;/code&gt;.
+     */
+    order?: string;
+
+    /**
+     * Page to load.
+     */
+    page?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationsGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationGetPath, 'get');
     if (params) {
+      rb.query('card_id', params.card_id, {});
+      rb.query('shop_id', params.shop_id, {});
+      rb.query('time', params.time, {});
+      rb.query('time.0', params['time.0'], {});
+      rb.query('time.1', params['time.1'], {});
+      rb.query('sort', params.sort, {});
+      rb.query('order', params.order, {});
+      rb.query('page', params.page, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -66,25 +111,62 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiReservationsGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiReservationGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiReservationsGet(params?: {
+  apiReservationGet(params?: {
+
+    /**
+     * Card.
+     */
+    card_id?: string;
+
+    /**
+     * Shop.
+     */
+    shop_id?: string;
+    time?: {
+};
+
+    /**
+     * Time is after this date. Must be a valid date.
+     */
+    'time.0'?: string;
+
+    /**
+     * Time is before this date. Must be a valid date. This field is required when &lt;code&gt;time.0&lt;/code&gt; is present.
+     */
+    'time.1'?: string;
+
+    /**
+     * Sort by given field. Must be one of &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;card_id&lt;/code&gt;, &lt;code&gt;shop_id&lt;/code&gt;, or &lt;code&gt;time&lt;/code&gt;.
+     */
+    sort?: string;
+
+    /**
+     * Sort ascending or descending. Must be one of &lt;code&gt;asc&lt;/code&gt; or &lt;code&gt;desc&lt;/code&gt;.
+     */
+    order?: string;
+
+    /**
+     * Page to load.
+     */
+    page?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiReservationsGet$Response(params).pipe(
+    return this.apiReservationGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiReservationsPost
+   * Path part for operation apiReservationPost
    */
-  static readonly ApiReservationsPostPath = '/api/reservations';
+  static readonly ApiReservationPostPath = '/api/reservation';
 
   /**
    * Create new Reservation.
@@ -92,11 +174,11 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiReservationsPost()` instead.
+   * To access only the response body, use `apiReservationPost()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiReservationsPost$Response(params: {
+  apiReservationPost$Response(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
@@ -119,7 +201,7 @@ export class ReservationService extends BaseService {
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationsPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationPostPath, 'post');
     if (params) {
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
@@ -144,11 +226,11 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiReservationsPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiReservationPost$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiReservationsPost(params: {
+  apiReservationPost(params: {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
@@ -171,15 +253,15 @@ export class ReservationService extends BaseService {
 }
   }): Observable<void> {
 
-    return this.apiReservationsPost$Response(params).pipe(
+    return this.apiReservationPost$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiReservationsIdGet
+   * Path part for operation apiReservationIdGet
    */
-  static readonly ApiReservationsIdGetPath = '/api/reservations/{id}';
+  static readonly ApiReservationIdGetPath = '/api/reservation/{id}';
 
   /**
    * Show specified Reservation.
@@ -187,11 +269,11 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiReservationsIdGet()` instead.
+   * To access only the response body, use `apiReservationIdGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiReservationsIdGet$Response(params: {
+  apiReservationIdGet$Response(params: {
 
     /**
      * The ID of the reservation.
@@ -202,7 +284,7 @@ export class ReservationService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationsIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationIdGetPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -227,11 +309,11 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiReservationsIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiReservationIdGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiReservationsIdGet(params: {
+  apiReservationIdGet(params: {
 
     /**
      * The ID of the reservation.
@@ -242,15 +324,15 @@ export class ReservationService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiReservationsIdGet$Response(params).pipe(
+    return this.apiReservationIdGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiReservationsIdPut
+   * Path part for operation apiReservationIdPut
    */
-  static readonly ApiReservationsIdPutPath = '/api/reservations/{id}';
+  static readonly ApiReservationIdPutPath = '/api/reservation/{id}';
 
   /**
    * Update specified Reservation.
@@ -258,11 +340,11 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiReservationsIdPut()` instead.
+   * To access only the response body, use `apiReservationIdPut()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiReservationsIdPut$Response(params: {
+  apiReservationIdPut$Response(params: {
 
     /**
      * The ID of the reservation.
@@ -290,7 +372,7 @@ export class ReservationService extends BaseService {
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationsIdPutPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationIdPutPath, 'put');
     if (params) {
       rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -316,11 +398,11 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiReservationsIdPut$Response()` instead.
+   * To access the full response (for headers, for example), `apiReservationIdPut$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiReservationsIdPut(params: {
+  apiReservationIdPut(params: {
 
     /**
      * The ID of the reservation.
@@ -348,15 +430,15 @@ export class ReservationService extends BaseService {
 }
   }): Observable<void> {
 
-    return this.apiReservationsIdPut$Response(params).pipe(
+    return this.apiReservationIdPut$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiReservationsIdDelete
+   * Path part for operation apiReservationIdDelete
    */
-  static readonly ApiReservationsIdDeletePath = '/api/reservations/{id}';
+  static readonly ApiReservationIdDeletePath = '/api/reservation/{id}';
 
   /**
    * Delete specified Reservation.
@@ -364,11 +446,11 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiReservationsIdDelete()` instead.
+   * To access only the response body, use `apiReservationIdDelete()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiReservationsIdDelete$Response(params: {
+  apiReservationIdDelete$Response(params: {
 
     /**
      * The ID of the reservation.
@@ -379,7 +461,7 @@ export class ReservationService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationsIdDeletePath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, ReservationService.ApiReservationIdDeletePath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
@@ -404,11 +486,11 @@ export class ReservationService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiReservationsIdDelete$Response()` instead.
+   * To access the full response (for headers, for example), `apiReservationIdDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiReservationsIdDelete(params: {
+  apiReservationIdDelete(params: {
 
     /**
      * The ID of the reservation.
@@ -419,7 +501,7 @@ export class ReservationService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiReservationsIdDelete$Response(params).pipe(
+    return this.apiReservationIdDelete$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
