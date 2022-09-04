@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {OrganizationService} from "../../../api/services/organization.service";
 
 @Component({
   selector: 'app-organization-list',
@@ -8,22 +7,17 @@ import {OrganizationService} from "../../../api/services/organization.service";
 })
 export class OrganizationListComponent implements OnInit {
 
-  constructor(protected organizationService : OrganizationService) { }
+  constructor() { }
 
-  public listItems;
+  public renderOptions = [
+    {field: 'name', render: 'string', headline: 'name'},
+    {field: 'street', render: 'string', headline: 'street'},
+    {field: 'postcode', render: 'string', headline: 'postcode'},
+    {field: 'city', render: 'string', headline: 'city'},
+    {field: 'contact', render: 'mail', headline: 'contact'},
+  ];
 
   ngOnInit(): void {
-
-    let me = this;
-
-    this.organizationService.apiAdminOrganizationGet().subscribe({
-      next(response) {
-        me.listItems = response;
-      },
-      error(msg) {
-        console.log('Error Getting Location: ', msg);
-      }
-    });
   }
 
 }

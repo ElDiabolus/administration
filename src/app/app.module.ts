@@ -10,13 +10,37 @@ import {LoginComponent} from "./page/login/login.component";
 import {FormsModule} from "@angular/forms";
 import {CookieService} from "ng2-cookies";
 import { OrganizationEditComponent } from './page/organization/organization-edit/organization-edit.component';
+import { CardListComponent } from './page/card/card-list/card-list.component';
+import { CardEditComponent } from './page/card/card-edit/card-edit.component';
+import { StandardListComponent } from './elements/standard-list/standard-list.component';
+import { StringRendererComponent } from './elements/standard-list/renderer/string-renderer/string-renderer.component';
+import { MailRendererComponent } from './elements/standard-list/renderer/mail-renderer/mail-renderer.component';
+import { LimitationListComponent } from './page/limitation/limitation-list/limitation-list.component';
+import { LimitationEditComponent } from './page/limitation/limitation-edit/limitation-edit.component';
+import { StandardFormComponent } from './elements/standard-form/standard-form.component';
+import { LimitationSetEditComponent } from './page/limitation/limitation-set-edit/limitation-set-edit.component';
+import { LimitationSetListComponent } from './page/limitation/limitation-set-list/limitation-set-list.component';
+import { PersonListComponent } from './page/card/person-list/person-list.component';
+import { PersonEditComponent } from './page/card/person-edit/person-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OrganizationListComponent,
     LoginComponent,
-    OrganizationEditComponent
+    OrganizationEditComponent,
+    CardListComponent,
+    CardEditComponent,
+    StandardListComponent,
+    StringRendererComponent,
+    MailRendererComponent,
+    LimitationListComponent,
+    LimitationEditComponent,
+    StandardFormComponent,
+    LimitationSetEditComponent,
+    LimitationSetListComponent,
+    PersonListComponent,
+    PersonEditComponent
   ],
   imports: [
     BrowserModule,
