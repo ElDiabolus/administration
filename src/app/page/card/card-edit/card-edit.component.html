@@ -1,1 +1,6 @@
 <app-standard-form [entityName]="'card'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<br/>
+<hr>
+<ng-container *ngIf="listQueryParams">
+  <app-person-list [queryParameters]="listQueryParams"></app-person-list>
+</ng-container>

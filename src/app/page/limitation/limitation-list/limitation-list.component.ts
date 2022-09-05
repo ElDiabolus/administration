@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-limitation-list',
@@ -14,6 +14,9 @@ export class LimitationListComponent implements OnInit {
     {field: 'limitation_set_id', render: 'string', headline: 'limitation_set_id'},
     {field: 'limit', render: 'string', headline: 'limit'},
   ];
+
+  @Input()
+  queryParameters;
 
   ngOnInit(): void {
   }

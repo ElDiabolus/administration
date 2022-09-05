@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-limitation-set-edit',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LimitationSetEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
 
   public renderOptions = [
     {field: 'name', render: 'string', headline: 'name'},
@@ -15,7 +17,16 @@ export class LimitationSetEditComponent implements OnInit {
     {field: 'valid_until', render: 'string', headline: 'valid_until'},
   ];
 
+  public listQueryParams;
+
   ngOnInit(): void {
+    let me = this;
+    this.route.params.subscribe(params => {
+      if(params.hasOwnProperty("id"))
+      {
+        me.listQueryParams = {limitation_set_id: params.id};
+      }
+    });
   }
 
 }

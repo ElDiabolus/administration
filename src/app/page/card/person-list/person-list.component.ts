@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-person-list',
@@ -14,6 +14,12 @@ export class PersonListComponent implements OnInit {
     {field: 'gender', render: 'string', headline: 'gender'},
     {field: 'age', render: 'string', headline: 'age'},
   ];
+
+  @Input()
+  routingPrefix: string;
+
+  @Input()
+  queryParameters;
 
   ngOnInit(): void {
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-card-edit',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+                private router: Router) { }
 
   public renderOptions = [
     {field: 'last_name', render: 'string', headline: 'last_name'},
@@ -18,9 +20,19 @@ export class CardEditComponent implements OnInit {
     {field: 'valid_from', render: 'string', headline: 'valid_from'},
     {field: 'valid_until', render: 'string', headline: 'valid_until'},
     {field: 'comment', render: 'string', headline: 'comment'},
+    {field: 'id', render: 'cardpdf', headline: 'download'},
   ];
 
+  public listQueryParams;
+
   ngOnInit(): void {
+    let me = this;
+    this.route.params.subscribe(params => {
+      if(params.hasOwnProperty("id"))
+      {
+        me.listQueryParams = {card_id: params.id};
+      }
+    });
   }
 
 }

@@ -22,6 +22,10 @@ import { LimitationSetEditComponent } from './page/limitation/limitation-set-edi
 import { LimitationSetListComponent } from './page/limitation/limitation-set-list/limitation-set-list.component';
 import { PersonListComponent } from './page/card/person-list/person-list.component';
 import { PersonEditComponent } from './page/card/person-edit/person-edit.component';
+import { ProductTypeListComponent } from './page/product-type/product-type-list/product-type-list.component';
+import { ProductTypeEditComponent } from './page/product-type/product-type-edit/product-type-edit.component';
+import { CardPdfRendererComponent } from './elements/standard-form/renderer/card-pdf-renderer/card-pdf-renderer.component';
+import { SubEntityListComponent } from './elements/sub-entity-list/sub-entity-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { PersonEditComponent } from './page/card/person-edit/person-edit.compone
     LimitationSetEditComponent,
     LimitationSetListComponent,
     PersonListComponent,
-    PersonEditComponent
+    PersonEditComponent,
+    ProductTypeListComponent,
+    ProductTypeEditComponent,
+    CardPdfRendererComponent,
+    SubEntityListComponent
   ],
   imports: [
     BrowserModule,

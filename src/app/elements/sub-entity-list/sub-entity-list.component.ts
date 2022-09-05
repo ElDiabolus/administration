@@ -1,12 +1,12 @@
-import {Component, Injector, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ApiOverviewService} from "../../api-overview.service";
 
 @Component({
-  selector: 'app-standard-list',
-  templateUrl: './standard-list.component.html',
-  styleUrls: ['./standard-list.component.scss'],
+  selector: 'app-sub-entity-list',
+  templateUrl: './sub-entity-list.component.html',
+  styleUrls: ['./sub-entity-list.component.scss']
 })
-export class StandardListComponent implements OnInit {
+export class SubEntityListComponent implements OnInit {
 
   constructor(private apiOverview: ApiOverviewService) { }
 
@@ -19,12 +19,6 @@ export class StandardListComponent implements OnInit {
   @Input()
   public customApiPath;
 
-  @Input()
-  public routingPrefix = '';
-
-  @Input()
-  public queryParameters = {};
-
   public listItems;
 
   protected apiService;
@@ -34,7 +28,7 @@ export class StandardListComponent implements OnInit {
     this.apiService = this.apiOverview.getServiceByEntityName(this.entityName);
     let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'Get', this.customApiPath);
 
-    this.apiService[apiCall](this.queryParameters).subscribe({
+    this.apiService[apiCall]().subscribe({
       next(response) {
         me.listItems = response;
       },

@@ -10,6 +10,8 @@ import {LimitationSetListComponent} from "./page/limitation/limitation-set-list/
 import {LimitationSetEditComponent} from "./page/limitation/limitation-set-edit/limitation-set-edit.component";
 import {PersonListComponent} from "./page/card/person-list/person-list.component";
 import {PersonEditComponent} from "./page/card/person-edit/person-edit.component";
+import {ProductTypeEditComponent} from "./page/product-type/product-type-edit/product-type-edit.component";
+import {ProductTypeListComponent} from "./page/product-type/product-type-list/product-type-list.component";
 
 const routes: Routes = [
   {path: 'organization-list', component: OrganizationListComponent},
@@ -26,7 +28,10 @@ const routes: Routes = [
   {path: 'limitation-set-new', component: LimitationSetEditComponent},
   {path: 'person-list', component: PersonListComponent},
   {path: 'person-edit/:id', component: PersonEditComponent},
-  {path: 'person-new', component: PersonEditComponent}
+  {path: 'person-new', component: PersonEditComponent},
+  {path: 'product-type-list', component: ProductTypeListComponent},
+  {path: 'product-type-edit/:id', component: ProductTypeEditComponent},
+  {path: 'product-type-new', component: ProductTypeEditComponent},
 ];
 
 @NgModule({

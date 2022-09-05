@@ -1,4 +1,10 @@
-<div [routerLink]="['/'+entityName+'-list']">BACK</div>
+<ng-container *ngIf="!customReturnPath">
+  <div [routerLink]="['/'+entityName+'-list']">BACK</div>
+</ng-container>
+<ng-container *ngIf="customReturnPath">
+  <div [routerLink]="[customReturnPath]">BACK</div>
+</ng-container>
+
 <ng-container *ngIf="entity">
     <ng-container *ngFor="let column of renderOptions">
       <ng-container *ngIf="column.render == 'string'">
@@ -7,14 +13,13 @@
       <ng-container *ngIf="column.render == 'mail'">
         {{column.headline}}<input type="text" [(ngModel)]="entity[column.field]"/>
       </ng-container>
+      <ng-container *ngIf="column.render == 'cardpdf'">
+        <app-card-pdf-renderer [id]="entity[column.field]"></app-card-pdf-renderer>
+      </ng-container>
+      <br/>
     </ng-container>
 
 </ng-container>
 
-<!--Name: <input type="text" [(ngModel)]="entity.name"/><br/>
-Straße: <input type="text" [(ngModel)]="entity.street"/><br/>
-PLZ: <input type="text" [(ngModel)]="entity.postcode"/><br/>
-Stadt: <input type="text" [(ngModel)]="entity.city"/><br/>
-E-Mail: <input type="text" [(ngModel)]="entity.contact"/>-->
 <button (click)="save()">Speichern</button>
 <button (click)="delete()">löschen</button>

@@ -1,11 +1,11 @@
 <ng-container *ngIf="appInitialized">
   <app-login *ngIf="!isLoggedIn()"></app-login>
   <ng-container *ngIf="isLoggedIn()">
-    <a routerLink="/organization-list">Organisationen</a>
-    <a routerLink="/card-list">Karten</a>
-    <a routerLink="/limitation-list">Limits</a>
-    <a routerLink="/limitation-set-list">Limitation Sets</a>
-    <a routerLink="/person-list">Personen</a>
+    <a routerLink="/organization-list">Organisationen</a><br/>
+    <a routerLink="/card-list">Karten</a><br/>
+    <a routerLink="/limitation-set-list">Limitation Sets</a><br/>
+    <a routerLink="/product-type-list">Produkttypen</a><br/>
+    <hr>
     <router-outlet></router-outlet>
   </ng-container>
 </ng-container>

@@ -1,0 +1,17 @@
+<ng-container *ngFor="let column of renderOptions">
+  {{ column.headline }} |
+</ng-container>
+<ng-container *ngIf="listItems">
+  <div *ngFor="let item of listItems.items">
+    <ng-container *ngFor="let column of renderOptions">
+      <ng-container *ngIf="column.render == 'string'">
+        <app-string-renderer [value]="item[column.field]"></app-string-renderer>
+      </ng-container>
+      <ng-container *ngIf="column.render == 'mail'">
+        <app-mail-renderer [value]="item[column.field]"></app-mail-renderer>
+      </ng-container>
+    </ng-container>
+    <div [routerLink]="['/'+entityName+'-edit/', item.id]">EDIT</div>
+  </div>
+  <div [routerLink]="['/'+entityName+'-new']">NEW</div>
+</ng-container>

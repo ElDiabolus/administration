@@ -23,6 +23,9 @@ export class StandardFormComponent implements OnInit {
   public customApiPath;
 
   @Input()
+  public customReturnPath;
+
+  @Input()
   public idParameterField;
 
   protected apiService;
