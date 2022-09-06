@@ -27,7 +27,15 @@ export class OrganizationEditComponent implements OnInit {
 
   public organization: any;
 
-  ngOnInit(): void {
+  public listQueryParams;
 
+  ngOnInit(): void {
+    let me = this;
+    this.route.params.subscribe(params => {
+      if(params.hasOwnProperty("id"))
+      {
+        me.listQueryParams = {organization_id: params.id};
+      }
+    });
   }
 }

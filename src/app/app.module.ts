@@ -26,6 +26,8 @@ import { ProductTypeListComponent } from './page/product-type/product-type-list/
 import { ProductTypeEditComponent } from './page/product-type/product-type-edit/product-type-edit.component';
 import { CardPdfRendererComponent } from './elements/standard-form/renderer/card-pdf-renderer/card-pdf-renderer.component';
 import { SubEntityListComponent } from './elements/sub-entity-list/sub-entity-list.component';
+import { ShopListComponent } from './page/organization/shop-list/shop-list.component';
+import { ShopEditComponent } from './page/organization/shop-edit/shop-edit.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { SubEntityListComponent } from './elements/sub-entity-list/sub-entity-li
     ProductTypeListComponent,
     ProductTypeEditComponent,
     CardPdfRendererComponent,
-    SubEntityListComponent
+    SubEntityListComponent,
+    ShopListComponent,
+    ShopEditComponent
   ],
   imports: [
     BrowserModule,

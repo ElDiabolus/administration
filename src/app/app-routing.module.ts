@@ -12,6 +12,7 @@ import {PersonListComponent} from "./page/card/person-list/person-list.component
 import {PersonEditComponent} from "./page/card/person-edit/person-edit.component";
 import {ProductTypeEditComponent} from "./page/product-type/product-type-edit/product-type-edit.component";
 import {ProductTypeListComponent} from "./page/product-type/product-type-list/product-type-list.component";
+import {ShopEditComponent} from "./page/organization/shop-edit/shop-edit.component";
 
 const routes: Routes = [
   {path: 'organization-list', component: OrganizationListComponent},
@@ -32,6 +33,8 @@ const routes: Routes = [
   {path: 'product-type-list', component: ProductTypeListComponent},
   {path: 'product-type-edit/:id', component: ProductTypeEditComponent},
   {path: 'product-type-new', component: ProductTypeEditComponent},
+  {path: 'shop-edit/:id', component: ShopEditComponent},
+  {path: 'shop-new', component: ShopEditComponent},
 ];
 
 @NgModule({
