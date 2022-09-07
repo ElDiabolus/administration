@@ -1,5 +1,5 @@
 <app-standard-form  [entityName]="'organization'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
 <hr>
 <ng-container *ngIf="listQueryParams">
-  <app-shop-list [queryParameters]="listQueryParams"></app-shop-list>
+  <app-shop-list [queryParameters]="listQueryParams" [isSubHierarchy]="true"></app-shop-list>
 </ng-container>

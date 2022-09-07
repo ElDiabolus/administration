@@ -21,6 +21,9 @@ export class PersonListComponent implements OnInit {
   @Input()
   queryParameters;
 
+  @Input()
+  isSubHierarchy = false;
+
   ngOnInit(): void {
   }
 

@@ -27,6 +27,9 @@ export class StandardListComponent implements OnInit {
 
   public listItems;
 
+  @Input()
+  isSubHierarchy = false;
+
   protected apiService;
 
   ngOnInit(): void {
@@ -37,6 +40,21 @@ export class StandardListComponent implements OnInit {
     this.apiService[apiCall](this.queryParameters).subscribe({
       next(response) {
         me.listItems = response;
+        me.listItems.items.forEach(function(item) {
+          for (const [key, value] of Object.entries(item)) {
+            if(typeof value === 'object' &&
+              !Array.isArray(value) &&
+              value !== null)
+            {
+              for (const [subkey, subvalue] of Object.entries(value)) {
+                item[key+"__"+subkey] = subvalue;
+              }
+            }
+          }
+          return item;
+        });
+        console.log("me.listItems");
+        console.log(me.listItems);
       },
       error(msg) {
         console.log('Error Getting Location: ', msg);

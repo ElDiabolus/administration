@@ -16,6 +16,15 @@
       <ng-container *ngIf="column.render == 'cardpdf'">
         <app-card-pdf-renderer [id]="entity[column.field]"></app-card-pdf-renderer>
       </ng-container>
+      <ng-container *ngIf="column.render == 'hidden'">
+        <input type=hidden [id]="entity[column.field]"/>
+      </ng-container>
+      <ng-container *ngIf="column.render == 'urlparameter'">
+        <input type="hidden" [(ngModel)]="entity[column.field]"/>
+      </ng-container>
+      <ng-container *ngIf="column.render == 'entity'">
+        <app-entity-combo-box [(ngModel)]="entity[column.field]" [entityName]="column.entityName" [displayField]="column.displayField"></app-entity-combo-box>
+      </ng-container>
       <br/>
     </ng-container>
 

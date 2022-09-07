@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {forwardRef, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,7 +7,7 @@ import { OrganizationListComponent } from './page/organization/organization-list
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./http-interceptors/auth-interceptor";
 import {LoginComponent} from "./page/login/login.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {CookieService} from "ng2-cookies";
 import { OrganizationEditComponent } from './page/organization/organization-edit/organization-edit.component';
 import { CardListComponent } from './page/card/card-list/card-list.component';
@@ -28,6 +28,7 @@ import { CardPdfRendererComponent } from './elements/standard-form/renderer/card
 import { SubEntityListComponent } from './elements/sub-entity-list/sub-entity-list.component';
 import { ShopListComponent } from './page/organization/shop-list/shop-list.component';
 import { ShopEditComponent } from './page/organization/shop-edit/shop-edit.component';
+import { EntityComboBoxComponent } from './elements/standard-form/renderer/entity-combo-box/entity-combo-box.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ShopEditComponent } from './page/organization/shop-edit/shop-edit.compo
     CardPdfRendererComponent,
     SubEntityListComponent,
     ShopListComponent,
-    ShopEditComponent
+    ShopEditComponent,
+    EntityComboBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +64,7 @@ import { ShopEditComponent } from './page/organization/shop-edit/shop-edit.compo
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => EntityComboBoxComponent), multi: true },
     CookieService
   ],
   bootstrap: [AppComponent]

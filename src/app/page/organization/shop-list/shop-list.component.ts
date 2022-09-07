@@ -22,6 +22,9 @@ export class ShopListComponent implements OnInit {
   @Input()
   queryParameters;
 
+  @Input()
+  isSubHierarchy = false;
+
   ngOnInit(): void {
   }
 

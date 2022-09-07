@@ -11,7 +11,7 @@
         <app-mail-renderer [value]="item[column.field]"></app-mail-renderer>
       </ng-container>
     </ng-container>
-    <span [routerLink]="['/'+entityName+'-edit/', item.id]">EDIT</span>
+    <span [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-edit/', item.id]">EDIT</span>
   </div>
-  <div [routerLink]="['/'+entityName+'-new']">NEW</div>
+  <div [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-new']">NEW</div>
 </ng-container>

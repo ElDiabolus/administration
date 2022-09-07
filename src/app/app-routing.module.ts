@@ -24,17 +24,21 @@ const routes: Routes = [
   {path: 'limitation-list', component: LimitationListComponent},
   {path: 'limitation-edit/:id', component: LimitationEditComponent},
   {path: 'limitation-new', component: LimitationEditComponent},
+  {path: ':topentity/:parentid/limitation-new', component: LimitationEditComponent},
+  {path: ':topentity/:parentid/limitation-edit/:id', component: LimitationEditComponent},
   {path: 'limitation-set-list', component: LimitationSetListComponent},
   {path: 'limitation-set-edit/:id', component: LimitationSetEditComponent},
   {path: 'limitation-set-new', component: LimitationSetEditComponent},
   {path: 'person-list', component: PersonListComponent},
   {path: 'person-edit/:id', component: PersonEditComponent},
   {path: 'person-new', component: PersonEditComponent},
+  {path: ':topentity/:parentid/person-edit/:id', component: PersonEditComponent},
+  {path: ':topentity/:parentid/person-new', component: PersonEditComponent},
   {path: 'product-type-list', component: ProductTypeListComponent},
   {path: 'product-type-edit/:id', component: ProductTypeEditComponent},
   {path: 'product-type-new', component: ProductTypeEditComponent},
-  {path: 'shop-edit/:id', component: ShopEditComponent},
-  {path: 'shop-new', component: ShopEditComponent},
+  {path: ':topentity/:parentid/shop-edit/:id', component: ShopEditComponent},
+  {path: ':topentity/:parentid/shop-new', component: ShopEditComponent},
 ];
 
 @NgModule({

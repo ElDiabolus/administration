@@ -1,5 +1,5 @@
-<app-standard-form [entityName]="'limitation-set'" [customApiPath]="'LimitationSetLimitationSet'" [renderOptions]="renderOptions" [idParameterField]="'limitationSet_id'"></app-standard-form>
+<app-standard-form [entityName]="'limitation-set'" [customApiPath]="'LimitationSetLimitationSet'" [customApiPathPost]="'LimitationSet'" [renderOptions]="renderOptions" [idParameterField]="'limitationSet_id'"></app-standard-form>
 <hr>
 <ng-container *ngIf="listQueryParams">
-  <app-limitation-list [queryParameters]="listQueryParams"></app-limitation-list>
+  <app-limitation-list [queryParameters]="listQueryParams" [isSubHierarchy]="true"></app-limitation-list>
 </ng-container>

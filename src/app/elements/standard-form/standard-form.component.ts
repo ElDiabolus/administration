@@ -23,6 +23,9 @@ export class StandardFormComponent implements OnInit {
   public customApiPath;
 
   @Input()
+  public customApiPathPost;
+
+  @Input()
   public customReturnPath;
 
   @Input()
@@ -37,12 +40,23 @@ export class StandardFormComponent implements OnInit {
     console.log("apiCall");
     console.log(apiCall);
     this.route.params.subscribe(params => {
+
+      if(!me.customReturnPath && params.hasOwnProperty("parentid"))
+      {
+        let parentid = params.parentid;
+        let topentity = params.topentity;
+        me.customReturnPath = '/'+topentity+"/"+parentid;
+      }
+
       if(!params.hasOwnProperty("id"))
       {
         this.entity = {};
+        this.setUrlParameters(params);
         return;
       }
-      let me = this;
+
+
+
       let requestParams = {};
       requestParams[this.idParameterField] = params.id;
       this.apiService[apiCall](requestParams).subscribe({
@@ -55,10 +69,30 @@ export class StandardFormComponent implements OnInit {
     });
   }
 
-  save() {
+  setUrlParameters(urlParams)
+  {
+    for(const renderOption of this.renderOptions)
+    {
 
+      if(renderOption.render == 'urlparameter')
+      {
+        let paramVal = urlParams[renderOption.urlparameter];
+        this.entity[renderOption.field] = paramVal;
+      }
+    }
+  }
+
+  save() {
+    let me = this;
     let responseObserver = {
       next(value: void): void {
+        if(me.customReturnPath) {
+          me.router.navigate([me.customReturnPath]);
+        }
+        else
+        {
+          me.router.navigate(['/'+me.entityName+'-list']);
+        }
       },
       error(err: any): void {
       }
@@ -67,11 +101,17 @@ export class StandardFormComponent implements OnInit {
     if(this.entity.hasOwnProperty("id"))
     {
       let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'IdPut', this.customApiPath);
-      this.apiService[apiCall]({id: this.entity.id, body: this.entity}).subscribe(responseObserver);
+      let callParams = {};
+      callParams[this.idParameterField] = this.entity.id;
+      // @ts-ignore
+      callParams.body = this.entity;
+      console.log(apiCall);
+      console.log(callParams);
+      this.apiService[apiCall](callParams).subscribe(responseObserver);
     }
     else
     {
-      let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'Post', this.customApiPath);
+      let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'Post', this.customApiPathPost);
       this.apiService[apiCall]({body: this.entity}).subscribe(responseObserver);
     }
 
@@ -81,9 +121,17 @@ export class StandardFormComponent implements OnInit {
   {
     var me = this;
     let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'IdDelete', this.customApiPath);
-    this.apiService[apiCall]({id: this.entity.id}).subscribe({
+    let callParams = {};
+    callParams[this.idParameterField] = this.entity.id;
+    this.apiService[apiCall](callParams).subscribe({
       next(value: void): void {
-        me.router.navigate(['organization-list']);
+        if(me.customReturnPath) {
+          me.router.navigate([me.customReturnPath]);
+        }
+        else
+        {
+          me.router.navigate(['/'+me.entityName+'-list']);
+        }
       },
       error(err: any): void {
       }

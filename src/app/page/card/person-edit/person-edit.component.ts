@@ -10,7 +10,7 @@ export class PersonEditComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'card_id', render: 'string', headline: 'card_id'},
+    {field: 'card_id', render: 'hidden', headline: 'card_id'},
     {field: 'gender', render: 'string', headline: 'gender'},
     {field: 'age', render: 'string', headline: 'age'},
   ];

@@ -19,12 +19,17 @@ export class LimitationSetEditComponent implements OnInit {
 
   public listQueryParams;
 
+  public parentId;
+
+  public id;
+
   ngOnInit(): void {
     let me = this;
     this.route.params.subscribe(params => {
       if(params.hasOwnProperty("id"))
       {
         me.listQueryParams = {limitation_set_id: params.id};
+        me.id = params.id;
       }
     });
   }

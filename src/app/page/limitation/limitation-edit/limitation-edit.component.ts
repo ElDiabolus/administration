@@ -10,8 +10,8 @@ export class LimitationEditComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'product_type_id', render: 'string', headline: 'product_type_id'},
-    {field: 'limitation_set_id', render: 'string', headline: 'limitation_set_id'},
+    {field: 'product_type_id', render: 'entity', headline: 'product_type_id', entityName: 'product-type', displayField:"name"},
+    {field: 'limitation_set_id', render: 'urlparameter', headline: 'limitation_set_id', urlparameter: 'parentid'},
     {field: 'limit', render: 'string', headline: 'limit'},
   ];
 

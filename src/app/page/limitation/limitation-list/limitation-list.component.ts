@@ -10,13 +10,16 @@ export class LimitationListComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'product_type_id', render: 'string', headline: 'product_type_id'},
-    {field: 'limitation_set_id', render: 'string', headline: 'limitation_set_id'},
+    {field: 'product_type__name', render: 'string', headline: 'product_type__name'},
+    {field: 'product_type__icon', render: 'string', headline: 'product_type__icon'},
     {field: 'limit', render: 'string', headline: 'limit'},
   ];
 
   @Input()
   queryParameters;
+
+  @Input()
+  isSubHierarchy = false;
 
   ngOnInit(): void {
   }
