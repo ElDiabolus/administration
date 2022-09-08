@@ -7,6 +7,7 @@ import {LimitationSetService} from "./api/services/limitation-set.service";
 import {PersonService} from "./api/services/person.service";
 import {ProductTypeService} from "./api/services/product-type.service";
 import {ShopService} from "./api/services/shop.service";
+import {UserService} from "./api/services/user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class ApiOverviewService {
               protected limitationSetService: LimitationSetService,
               protected personService: PersonService,
               protected productTypeService: ProductTypeService,
-              protected shopService: ShopService) {
+              protected shopService: ShopService,
+              protected userService: UserService) {
 
   }
 

@@ -67,10 +67,15 @@ export class LineItemService extends BaseService {
      * Page to load.
      */
     page?: number;
+
+    /**
+     * Items per page. Must be at least 10. Must not be greater than 500.
+     */
+    limit?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<string>> {
 
     const rb = new RequestBuilder(this.rootUrl, LineItemService.ApiAdminLineItemGetPath, 'get');
     if (params) {
@@ -80,6 +85,7 @@ export class LineItemService extends BaseService {
       rb.query('sort', params.sort, {});
       rb.query('order', params.order, {});
       rb.query('page', params.page, {});
+      rb.query('limit', params.limit, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -91,7 +97,7 @@ export class LineItemService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<string>;
       })
     );
   }
@@ -137,13 +143,18 @@ export class LineItemService extends BaseService {
      * Page to load.
      */
     page?: number;
+
+    /**
+     * Items per page. Must be at least 10. Must not be greater than 500.
+     */
+    limit?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<string> {
 
     return this.apiAdminLineItemGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<string>) => r.body as string)
     );
   }
 
@@ -266,7 +277,14 @@ export class LineItemService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'id'?: number;
+'visit_id'?: number;
+'person_id'?: number;
+'product_type_id'?: number;
+'created_at'?: string;
+'updated_at'?: string;
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, LineItemService.ApiAdminLineItemIdGetPath, 'get');
     if (params) {
@@ -282,7 +300,14 @@ export class LineItemService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'id'?: number;
+        'visit_id'?: number;
+        'person_id'?: number;
+        'product_type_id'?: number;
+        'created_at'?: string;
+        'updated_at'?: string;
+        }>;
       })
     );
   }
@@ -306,10 +331,31 @@ export class LineItemService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'id'?: number;
+'visit_id'?: number;
+'person_id'?: number;
+'product_type_id'?: number;
+'created_at'?: string;
+'updated_at'?: string;
+}> {
 
     return this.apiAdminLineItemIdGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'id'?: number;
+'visit_id'?: number;
+'person_id'?: number;
+'product_type_id'?: number;
+'created_at'?: string;
+'updated_at'?: string;
+}>) => r.body as {
+'id'?: number;
+'visit_id'?: number;
+'person_id'?: number;
+'product_type_id'?: number;
+'created_at'?: string;
+'updated_at'?: string;
+})
     );
   }
 
@@ -443,7 +489,9 @@ export class LineItemService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'success'?: boolean;
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, LineItemService.ApiAdminLineItemIdDeletePath, 'delete');
     if (params) {
@@ -459,7 +507,9 @@ export class LineItemService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'success'?: boolean;
+        }>;
       })
     );
   }
@@ -483,10 +533,16 @@ export class LineItemService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'success'?: boolean;
+}> {
 
     return this.apiAdminLineItemIdDelete$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'success'?: boolean;
+}>) => r.body as {
+'success'?: boolean;
+})
     );
   }
 

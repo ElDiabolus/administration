@@ -22,9 +22,9 @@ export class PdfService extends BaseService {
   }
 
   /**
-   * Path part for operation apiPdfCardCardIdGet
+   * Path part for operation apiPdfCardIdGet
    */
-  static readonly ApiPdfCardCardIdGetPath = '/api/pdf/card/{card_id}';
+  static readonly ApiPdfCardIdGetPath = '/api/pdf/card/{id}';
 
   /**
    * Print specified Card.
@@ -35,16 +35,16 @@ export class PdfService extends BaseService {
    * If none is given it will generate a json with the base64 encoded PDF-File.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiPdfCardCardIdGet()` instead.
+   * To access only the response body, use `apiPdfCardIdGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiPdfCardCardIdGet$Response(params: {
+  apiPdfCardIdGet$Response(params: {
 
     /**
      * The ID of the card.
      */
-    card_id: number;
+    id: number;
 
     /**
      * Download generated PDF
@@ -60,9 +60,9 @@ export class PdfService extends BaseService {
     Accept?: string;
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PdfService.ApiPdfCardCardIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PdfService.ApiPdfCardIdGetPath, 'get');
     if (params) {
-      rb.path('card_id', params.card_id, {});
+      rb.path('id', params.id, {});
       rb.query('download', params.download, {});
       rb.query('raw', params.raw, {});
       rb.header('Authorization', params.Authorization, {});
@@ -90,16 +90,16 @@ export class PdfService extends BaseService {
    * If none is given it will generate a json with the base64 encoded PDF-File.
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiPdfCardCardIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiPdfCardIdGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiPdfCardCardIdGet(params: {
+  apiPdfCardIdGet(params: {
 
     /**
      * The ID of the card.
      */
-    card_id: number;
+    id: number;
 
     /**
      * Download generated PDF
@@ -115,7 +115,7 @@ export class PdfService extends BaseService {
     Accept?: string;
   }): Observable<void> {
 
-    return this.apiPdfCardCardIdGet$Response(params).pipe(
+    return this.apiPdfCardIdGet$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

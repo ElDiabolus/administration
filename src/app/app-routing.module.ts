@@ -13,6 +13,7 @@ import {PersonEditComponent} from "./page/card/person-edit/person-edit.component
 import {ProductTypeEditComponent} from "./page/product-type/product-type-edit/product-type-edit.component";
 import {ProductTypeListComponent} from "./page/product-type/product-type-list/product-type-list.component";
 import {ShopEditComponent} from "./page/organization/shop-edit/shop-edit.component";
+import {UserEditComponent} from "./page/organization/user-edit/user-edit.component";
 
 const routes: Routes = [
   {path: 'organization-list', component: OrganizationListComponent},
@@ -39,6 +40,8 @@ const routes: Routes = [
   {path: 'product-type-new', component: ProductTypeEditComponent},
   {path: ':topentity/:parentid/shop-edit/:id', component: ShopEditComponent},
   {path: ':topentity/:parentid/shop-new', component: ShopEditComponent},
+  {path: ':topentity/:parentid/user-edit/:id', component: UserEditComponent},
+  {path: ':topentity/:parentid/user-new', component: UserEditComponent},
 ];
 
 @NgModule({

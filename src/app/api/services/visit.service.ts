@@ -62,10 +62,22 @@ export class VisitService extends BaseService {
      * Page to load.
      */
     page?: number;
+
+    /**
+     * Items per page. Must be at least 10. Must not be greater than 500.
+     */
+    limit?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, VisitService.ApiAdminVisitGetPath, 'get');
     if (params) {
@@ -74,6 +86,7 @@ export class VisitService extends BaseService {
       rb.query('sort', params.sort, {});
       rb.query('order', params.order, {});
       rb.query('page', params.page, {});
+      rb.query('limit', params.limit, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -85,7 +98,14 @@ export class VisitService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'items'?: Array<{
+        }>;
+        'meta'?: {
+        };
+        'links'?: {
+        };
+        }>;
       })
     );
   }
@@ -126,13 +146,39 @@ export class VisitService extends BaseService {
      * Page to load.
      */
     page?: number;
+
+    /**
+     * Items per page. Must be at least 10. Must not be greater than 500.
+     */
+    limit?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+}> {
 
     return this.apiAdminVisitGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+}>) => r.body as {
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+})
     );
   }
 
@@ -245,7 +291,15 @@ export class VisitService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'id'?: number;
+'card_id'?: number;
+'user_id'?: number;
+'card'?: {
+};
+'created_at'?: string;
+'updated_at'?: string;
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, VisitService.ApiAdminVisitIdGetPath, 'get');
     if (params) {
@@ -261,7 +315,15 @@ export class VisitService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'id'?: number;
+        'card_id'?: number;
+        'user_id'?: number;
+        'card'?: {
+        };
+        'created_at'?: string;
+        'updated_at'?: string;
+        }>;
       })
     );
   }
@@ -285,10 +347,34 @@ export class VisitService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'id'?: number;
+'card_id'?: number;
+'user_id'?: number;
+'card'?: {
+};
+'created_at'?: string;
+'updated_at'?: string;
+}> {
 
     return this.apiAdminVisitIdGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'id'?: number;
+'card_id'?: number;
+'user_id'?: number;
+'card'?: {
+};
+'created_at'?: string;
+'updated_at'?: string;
+}>) => r.body as {
+'id'?: number;
+'card_id'?: number;
+'user_id'?: number;
+'card'?: {
+};
+'created_at'?: string;
+'updated_at'?: string;
+})
     );
   }
 
@@ -412,7 +498,9 @@ export class VisitService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'success'?: boolean;
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, VisitService.ApiAdminVisitIdDeletePath, 'delete');
     if (params) {
@@ -428,7 +516,9 @@ export class VisitService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'success'?: boolean;
+        }>;
       })
     );
   }
@@ -452,10 +542,16 @@ export class VisitService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'success'?: boolean;
+}> {
 
     return this.apiAdminVisitIdDelete$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'success'?: boolean;
+}>) => r.body as {
+'success'?: boolean;
+})
     );
   }
 

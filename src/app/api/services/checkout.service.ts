@@ -22,9 +22,9 @@ export class CheckoutService extends BaseService {
   }
 
   /**
-   * Path part for operation apiCardVisitCardIdGet
+   * Path part for operation apiCardVisitIdGet
    */
-  static readonly ApiCardVisitCardIdGetPath = '/api/card/visit/{card_id}';
+  static readonly ApiCardVisitIdGetPath = '/api/card/visit/{id}';
 
   /**
    * Show specified Card and related Persons.
@@ -36,24 +36,29 @@ export class CheckoutService extends BaseService {
    * many of them have already been used by a person
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCardVisitCardIdGet()` instead.
+   * To access only the response body, use `apiCardVisitIdGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiCardVisitCardIdGet$Response(params: {
+  apiCardVisitIdGet$Response(params: {
 
     /**
      * The ID of the card.
      */
-    card_id: number;
+    id: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'card'?: {
+};
+'persons'?: Array<{
+}>;
+}>> {
 
-    const rb = new RequestBuilder(this.rootUrl, CheckoutService.ApiCardVisitCardIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, CheckoutService.ApiCardVisitIdGetPath, 'get');
     if (params) {
-      rb.path('card_id', params.card_id, {});
+      rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -65,7 +70,12 @@ export class CheckoutService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'card'?: {
+        };
+        'persons'?: Array<{
+        }>;
+        }>;
       })
     );
   }
@@ -80,30 +90,45 @@ export class CheckoutService extends BaseService {
    * many of them have already been used by a person
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiCardVisitCardIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiCardVisitIdGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiCardVisitCardIdGet(params: {
+  apiCardVisitIdGet(params: {
 
     /**
      * The ID of the card.
      */
-    card_id: number;
+    id: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'card'?: {
+};
+'persons'?: Array<{
+}>;
+}> {
 
-    return this.apiCardVisitCardIdGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiCardVisitIdGet$Response(params).pipe(
+      map((r: StrictHttpResponse<{
+'card'?: {
+};
+'persons'?: Array<{
+}>;
+}>) => r.body as {
+'card'?: {
+};
+'persons'?: Array<{
+}>;
+})
     );
   }
 
   /**
-   * Path part for operation apiCardVisitCardIdPost
+   * Path part for operation apiCardVisitIdPost
    */
-  static readonly ApiCardVisitCardIdPostPath = '/api/card/visit/{card_id}';
+  static readonly ApiCardVisitIdPostPath = '/api/card/visit/{id}';
 
   /**
    * Create new Visit, LineItems.
@@ -113,16 +138,16 @@ export class CheckoutService extends BaseService {
    * Endpoint creates a new Visit entry and stores the submitted lineItems
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCardVisitCardIdPost()` instead.
+   * To access only the response body, use `apiCardVisitIdPost()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiCardVisitCardIdPost$Response(params: {
+  apiCardVisitIdPost$Response(params: {
 
     /**
      * The ID of the card.
      */
-    card_id: number;
+    id: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
@@ -147,9 +172,9 @@ export class CheckoutService extends BaseService {
 }
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, CheckoutService.ApiCardVisitCardIdPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, CheckoutService.ApiCardVisitIdPostPath, 'post');
     if (params) {
-      rb.path('card_id', params.card_id, {});
+      rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -175,16 +200,16 @@ export class CheckoutService extends BaseService {
    * Endpoint creates a new Visit entry and stores the submitted lineItems
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiCardVisitCardIdPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiCardVisitIdPost$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  apiCardVisitCardIdPost(params: {
+  apiCardVisitIdPost(params: {
 
     /**
      * The ID of the card.
      */
-    card_id: number;
+    id: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
@@ -209,7 +234,97 @@ export class CheckoutService extends BaseService {
 }
   }): Observable<void> {
 
-    return this.apiCardVisitCardIdPost$Response(params).pipe(
+    return this.apiCardVisitIdPost$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
+   * Path part for operation apiCardVisitIdCommentPost
+   */
+  static readonly ApiCardVisitIdCommentPostPath = '/api/card/visit/{id}/comment';
+
+  /**
+   * Add comment to card.
+   *
+   * <small class="badge badge-purple">App authorization available</small>
+   *
+   * Allows the app to add a comment to the given card
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCardVisitIdCommentPost()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  apiCardVisitIdCommentPost$Response(params: {
+
+    /**
+     * The ID of the card.
+     */
+    id: number;
+    Authorization?: string;
+    'Content-Type'?: string;
+    Accept?: string;
+    body: {
+
+/**
+ * Additional Comment for the card.
+ */
+'comment': string;
+}
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, CheckoutService.ApiCardVisitIdCommentPostPath, 'post');
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.header('Authorization', params.Authorization, {});
+      rb.header('Content-Type', params['Content-Type'], {});
+      rb.header('Accept', params.Accept, {});
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * Add comment to card.
+   *
+   * <small class="badge badge-purple">App authorization available</small>
+   *
+   * Allows the app to add a comment to the given card
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiCardVisitIdCommentPost$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  apiCardVisitIdCommentPost(params: {
+
+    /**
+     * The ID of the card.
+     */
+    id: number;
+    Authorization?: string;
+    'Content-Type'?: string;
+    Accept?: string;
+    body: {
+
+/**
+ * Additional Comment for the card.
+ */
+'comment': string;
+}
+  }): Observable<void> {
+
+    return this.apiCardVisitIdCommentPost$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

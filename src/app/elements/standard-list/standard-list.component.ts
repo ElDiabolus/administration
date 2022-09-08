@@ -32,14 +32,25 @@ export class StandardListComponent implements OnInit {
 
   protected apiService;
 
+  protected page = 1;
+
+  protected meta = {};
+
   ngOnInit(): void {
+    this.loadList();
+  }
+
+  loadList()
+  {
     let me = this;
     this.apiService = this.apiOverview.getServiceByEntityName(this.entityName);
     let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'Get', this.customApiPath);
-
+    // @ts-ignore
+    this.queryParameters.page = this.page;
     this.apiService[apiCall](this.queryParameters).subscribe({
       next(response) {
         me.listItems = response;
+        me.meta = response.meta;
         me.listItems.items.forEach(function(item) {
           for (const [key, value] of Object.entries(item)) {
             if(typeof value === 'object' &&
@@ -61,5 +72,18 @@ export class StandardListComponent implements OnInit {
       }
     });
   }
+
+  prevPage()
+  {
+    this.page--;
+    this.loadList();
+  }
+
+  nextPage()
+  {
+    this.page++;
+    this.loadList();
+  }
+
 
 }

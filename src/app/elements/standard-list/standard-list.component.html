@@ -14,4 +14,6 @@
     <span [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-edit/', item.id]">EDIT</span>
   </div>
   <div [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-new']">NEW</div>
+  <div (click)="prevPage()" *ngIf="meta.current_page > 1">prev</div>
+  <div (click)="nextPage()" *ngIf="meta.last_page > meta.current_page">next</div>
 </ng-container>

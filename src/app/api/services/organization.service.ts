@@ -77,10 +77,22 @@ export class OrganizationService extends BaseService {
      * Page to load.
      */
     page?: number;
+
+    /**
+     * Items per page. Must be at least 10. Must not be greater than 500.
+     */
+    limit?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, OrganizationService.ApiAdminOrganizationGetPath, 'get');
     if (params) {
@@ -92,6 +104,7 @@ export class OrganizationService extends BaseService {
       rb.query('sort', params.sort, {});
       rb.query('order', params.order, {});
       rb.query('page', params.page, {});
+      rb.query('limit', params.limit, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -103,7 +116,14 @@ export class OrganizationService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'items'?: Array<{
+        }>;
+        'meta'?: {
+        };
+        'links'?: {
+        };
+        }>;
       })
     );
   }
@@ -159,13 +179,39 @@ export class OrganizationService extends BaseService {
      * Page to load.
      */
     page?: number;
+
+    /**
+     * Items per page. Must be at least 10. Must not be greater than 500.
+     */
+    limit?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+}> {
 
     return this.apiAdminOrganizationGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+}>) => r.body as {
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+})
     );
   }
 
@@ -189,11 +235,6 @@ export class OrganizationService extends BaseService {
     'Content-Type'?: string;
     Accept?: string;
     body: {
-
-/**
- * ID of the instance the organization is attached to.
- */
-'instance_id': string;
 
 /**
  * Name of the organization.
@@ -258,11 +299,6 @@ export class OrganizationService extends BaseService {
     body: {
 
 /**
- * ID of the instance the organization is attached to.
- */
-'instance_id': string;
-
-/**
  * Name of the organization.
  */
 'name': string;
@@ -318,7 +354,17 @@ export class OrganizationService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'id'?: number;
+'instance_id'?: number;
+'name'?: string;
+'street'?: string;
+'postcode'?: string;
+'city'?: string;
+'contact'?: string;
+'created_at'?: string;
+'updated_at'?: string;
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, OrganizationService.ApiAdminOrganizationIdGetPath, 'get');
     if (params) {
@@ -334,7 +380,17 @@ export class OrganizationService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'id'?: number;
+        'instance_id'?: number;
+        'name'?: string;
+        'street'?: string;
+        'postcode'?: string;
+        'city'?: string;
+        'contact'?: string;
+        'created_at'?: string;
+        'updated_at'?: string;
+        }>;
       })
     );
   }
@@ -358,10 +414,40 @@ export class OrganizationService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'id'?: number;
+'instance_id'?: number;
+'name'?: string;
+'street'?: string;
+'postcode'?: string;
+'city'?: string;
+'contact'?: string;
+'created_at'?: string;
+'updated_at'?: string;
+}> {
 
     return this.apiAdminOrganizationIdGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'id'?: number;
+'instance_id'?: number;
+'name'?: string;
+'street'?: string;
+'postcode'?: string;
+'city'?: string;
+'contact'?: string;
+'created_at'?: string;
+'updated_at'?: string;
+}>) => r.body as {
+'id'?: number;
+'instance_id'?: number;
+'name'?: string;
+'street'?: string;
+'postcode'?: string;
+'city'?: string;
+'contact'?: string;
+'created_at'?: string;
+'updated_at'?: string;
+})
     );
   }
 
@@ -390,11 +476,6 @@ export class OrganizationService extends BaseService {
     'Content-Type'?: string;
     Accept?: string;
     body: {
-
-/**
- * ID of the instance the organization is attached to.
- */
-'instance_id': string;
 
 /**
  * Name of the organization.
@@ -465,11 +546,6 @@ export class OrganizationService extends BaseService {
     body: {
 
 /**
- * ID of the instance the organization is attached to.
- */
-'instance_id': string;
-
-/**
  * Name of the organization.
  */
 'name': string;
@@ -525,7 +601,9 @@ export class OrganizationService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'success'?: boolean;
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, OrganizationService.ApiAdminOrganizationIdDeletePath, 'delete');
     if (params) {
@@ -541,7 +619,9 @@ export class OrganizationService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'success'?: boolean;
+        }>;
       })
     );
   }
@@ -565,10 +645,16 @@ export class OrganizationService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'success'?: boolean;
+}> {
 
     return this.apiAdminOrganizationIdDelete$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'success'?: boolean;
+}>) => r.body as {
+'success'?: boolean;
+})
     );
   }
 

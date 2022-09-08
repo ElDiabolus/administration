@@ -73,7 +73,8 @@ export class EntityComboBoxComponent implements OnInit, ControlValueAccessor {
     let me = this;
     this.apiService = this.apiOverview.getServiceByEntityName(this.entityName);
     let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'Get', this.customApiPath);
-
+    // @ts-ignore
+    this.queryParameters.limit = 500;
     this.apiService[apiCall](this.queryParameters).subscribe({
       next(response) {
         console.log("response");

@@ -5,20 +5,20 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { ScheduleService } from './services/schedule.service';
-import { AuthenticationService } from './services/authentication.service';
-import { CardService } from './services/card.service';
-import { CheckoutService } from './services/checkout.service';
-import { LimitationService } from './services/limitation.service';
-import { LimitationSetService } from './services/limitation-set.service';
-import { LineItemService } from './services/line-item.service';
 import { OrganizationService } from './services/organization.service';
-import { PdfService } from './services/pdf.service';
 import { PersonService } from './services/person.service';
+import { UserService } from './services/user.service';
 import { ProductTypeService } from './services/product-type.service';
 import { ReservationService } from './services/reservation.service';
-import { ShopService } from './services/shop.service';
-import { UserService } from './services/user.service';
+import { LineItemService } from './services/line-item.service';
 import { VisitService } from './services/visit.service';
+import { CheckoutService } from './services/checkout.service';
+import { CardService } from './services/card.service';
+import { ShopService } from './services/shop.service';
+import { LimitationService } from './services/limitation.service';
+import { PdfService } from './services/pdf.service';
+import { LimitationSetService } from './services/limitation-set.service';
+import { AuthenticationService } from './services/authentication.service';
 
 /**
  * Module that provides all services and configuration.
@@ -29,20 +29,20 @@ import { VisitService } from './services/visit.service';
   declarations: [],
   providers: [
     ScheduleService,
-    AuthenticationService,
-    CardService,
-    CheckoutService,
-    LimitationService,
-    LimitationSetService,
-    LineItemService,
     OrganizationService,
-    PdfService,
     PersonService,
+    UserService,
     ProductTypeService,
     ReservationService,
-    ShopService,
-    UserService,
+    LineItemService,
     VisitService,
+    CheckoutService,
+    CardService,
+    ShopService,
+    LimitationService,
+    PdfService,
+    LimitationSetService,
+    AuthenticationService,
     ApiConfiguration
   ],
 })

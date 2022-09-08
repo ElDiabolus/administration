@@ -88,6 +88,11 @@ export class CardService extends BaseService {
     'valid_until.1'?: string;
 
     /**
+     * Comment contains.
+     */
+    comment?: string;
+
+    /**
      * Created by user_id.
      */
     creator_id?: string;
@@ -106,10 +111,22 @@ export class CardService extends BaseService {
      * Page to load.
      */
     page?: number;
+
+    /**
+     * Items per page. Must be at least 10. Must not be greater than 500.
+     */
+    limit?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, CardService.ApiAdminCardGetPath, 'get');
     if (params) {
@@ -124,10 +141,12 @@ export class CardService extends BaseService {
       rb.query('valid_until', params.valid_until, {});
       rb.query('valid_until.0', params['valid_until.0'], {});
       rb.query('valid_until.1', params['valid_until.1'], {});
+      rb.query('comment', params.comment, {});
       rb.query('creator_id', params.creator_id, {});
       rb.query('sort', params.sort, {});
       rb.query('order', params.order, {});
       rb.query('page', params.page, {});
+      rb.query('limit', params.limit, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -139,7 +158,14 @@ export class CardService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'items'?: Array<{
+        }>;
+        'meta'?: {
+        };
+        'links'?: {
+        };
+        }>;
       })
     );
   }
@@ -206,6 +232,11 @@ export class CardService extends BaseService {
     'valid_until.1'?: string;
 
     /**
+     * Comment contains.
+     */
+    comment?: string;
+
+    /**
      * Created by user_id.
      */
     creator_id?: string;
@@ -224,13 +255,39 @@ export class CardService extends BaseService {
      * Page to load.
      */
     page?: number;
+
+    /**
+     * Items per page. Must be at least 10. Must not be greater than 500.
+     */
+    limit?: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+}> {
 
     return this.apiAdminCardGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+}>) => r.body as {
+'items'?: Array<{
+}>;
+'meta'?: {
+};
+'links'?: {
+};
+})
     );
   }
 
@@ -291,9 +348,9 @@ export class CardService extends BaseService {
 'valid_until': string;
 
 /**
- * ID of the User the card is attached to.
+ * Additional Comment for the card.
  */
-'creator_id': string;
+'comment'?: string;
 }
   }): Observable<StrictHttpResponse<void>> {
 
@@ -368,9 +425,9 @@ export class CardService extends BaseService {
 'valid_until': string;
 
 /**
- * ID of the User the card is attached to.
+ * Additional Comment for the card.
  */
-'creator_id': string;
+'comment'?: string;
 }
   }): Observable<void> {
 
@@ -403,7 +460,20 @@ export class CardService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'id'?: number;
+'last_name'?: string;
+'first_name'?: string;
+'street'?: string;
+'postcode'?: string;
+'city'?: string;
+'valid_from'?: string;
+'valid_until'?: string;
+'creator_id'?: number;
+'comment'?: string;
+'created_at'?: string;
+'updated_at'?: string;
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, CardService.ApiAdminCardIdGetPath, 'get');
     if (params) {
@@ -419,7 +489,20 @@ export class CardService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'id'?: number;
+        'last_name'?: string;
+        'first_name'?: string;
+        'street'?: string;
+        'postcode'?: string;
+        'city'?: string;
+        'valid_from'?: string;
+        'valid_until'?: string;
+        'creator_id'?: number;
+        'comment'?: string;
+        'created_at'?: string;
+        'updated_at'?: string;
+        }>;
       })
     );
   }
@@ -443,10 +526,49 @@ export class CardService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'id'?: number;
+'last_name'?: string;
+'first_name'?: string;
+'street'?: string;
+'postcode'?: string;
+'city'?: string;
+'valid_from'?: string;
+'valid_until'?: string;
+'creator_id'?: number;
+'comment'?: string;
+'created_at'?: string;
+'updated_at'?: string;
+}> {
 
     return this.apiAdminCardIdGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'id'?: number;
+'last_name'?: string;
+'first_name'?: string;
+'street'?: string;
+'postcode'?: string;
+'city'?: string;
+'valid_from'?: string;
+'valid_until'?: string;
+'creator_id'?: number;
+'comment'?: string;
+'created_at'?: string;
+'updated_at'?: string;
+}>) => r.body as {
+'id'?: number;
+'last_name'?: string;
+'first_name'?: string;
+'street'?: string;
+'postcode'?: string;
+'city'?: string;
+'valid_from'?: string;
+'valid_until'?: string;
+'creator_id'?: number;
+'comment'?: string;
+'created_at'?: string;
+'updated_at'?: string;
+})
     );
   }
 
@@ -512,9 +634,9 @@ export class CardService extends BaseService {
 'valid_until': string;
 
 /**
- * ID of the User the card is attached to.
+ * Additional Comment for the card.
  */
-'creator_id': string;
+'comment'?: string;
 }
   }): Observable<StrictHttpResponse<void>> {
 
@@ -595,9 +717,9 @@ export class CardService extends BaseService {
 'valid_until': string;
 
 /**
- * ID of the User the card is attached to.
+ * Additional Comment for the card.
  */
-'creator_id': string;
+'comment'?: string;
 }
   }): Observable<void> {
 
@@ -630,7 +752,9 @@ export class CardService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<{
+'success'?: boolean;
+}>> {
 
     const rb = new RequestBuilder(this.rootUrl, CardService.ApiAdminCardIdDeletePath, 'delete');
     if (params) {
@@ -646,7 +770,9 @@ export class CardService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<{
+        'success'?: boolean;
+        }>;
       })
     );
   }
@@ -670,10 +796,16 @@ export class CardService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<{
+'success'?: boolean;
+}> {
 
     return this.apiAdminCardIdDelete$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<{
+'success'?: boolean;
+}>) => r.body as {
+'success'?: boolean;
+})
     );
   }
 

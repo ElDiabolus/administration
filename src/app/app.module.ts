@@ -29,6 +29,8 @@ import { SubEntityListComponent } from './elements/sub-entity-list/sub-entity-li
 import { ShopListComponent } from './page/organization/shop-list/shop-list.component';
 import { ShopEditComponent } from './page/organization/shop-edit/shop-edit.component';
 import { EntityComboBoxComponent } from './elements/standard-form/renderer/entity-combo-box/entity-combo-box.component';
+import { UserListComponent } from './page/organization/user-list/user-list.component';
+import { UserEditComponent } from './page/organization/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { EntityComboBoxComponent } from './elements/standard-form/renderer/entit
     SubEntityListComponent,
     ShopListComponent,
     ShopEditComponent,
-    EntityComboBoxComponent
+    EntityComboBoxComponent,
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

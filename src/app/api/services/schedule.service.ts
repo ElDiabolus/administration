@@ -42,7 +42,7 @@ export class ScheduleService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<string>> {
 
     const rb = new RequestBuilder(this.rootUrl, ScheduleService.ApiScheduleGetPath, 'get');
     if (params) {
@@ -57,7 +57,7 @@ export class ScheduleService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<string>;
       })
     );
   }
@@ -78,17 +78,17 @@ export class ScheduleService extends BaseService {
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<string> {
 
     return this.apiScheduleGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<string>) => r.body as string)
     );
   }
 
   /**
-   * Path part for operation apiScheduleShopIdGet
+   * Path part for operation apiScheduleIdGet
    */
-  static readonly ApiScheduleShopIdGetPath = '/api/schedule/{shop_id}';
+  static readonly ApiScheduleIdGetPath = '/api/schedule/{id}';
 
   /**
    * List today´s reservations.
@@ -98,24 +98,25 @@ export class ScheduleService extends BaseService {
    * List all today's reservations for a specified store
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiScheduleShopIdGet()` instead.
+   * To access only the response body, use `apiScheduleIdGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiScheduleShopIdGet$Response(params: {
+  apiScheduleIdGet$Response(params: {
 
     /**
      * The ID of the shop.
      */
-    shop_id: number;
+    id: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<Array<{
+}>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ScheduleService.ApiScheduleShopIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ScheduleService.ApiScheduleIdGetPath, 'get');
     if (params) {
-      rb.path('shop_id', params.shop_id, {});
+      rb.path('id', params.id, {});
       rb.header('Authorization', params.Authorization, {});
       rb.header('Content-Type', params['Content-Type'], {});
       rb.header('Accept', params.Accept, {});
@@ -127,7 +128,8 @@ export class ScheduleService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<Array<{
+        }>>;
       })
     );
   }
@@ -140,23 +142,26 @@ export class ScheduleService extends BaseService {
    * List all today's reservations for a specified store
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiScheduleShopIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiScheduleIdGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiScheduleShopIdGet(params: {
+  apiScheduleIdGet(params: {
 
     /**
      * The ID of the shop.
      */
-    shop_id: number;
+    id: number;
     Authorization?: string;
     'Content-Type'?: string;
     Accept?: string;
-  }): Observable<void> {
+  }): Observable<Array<{
+}>> {
 
-    return this.apiScheduleShopIdGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiScheduleIdGet$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<{
+}>>) => r.body as Array<{
+}>)
     );
   }
 
