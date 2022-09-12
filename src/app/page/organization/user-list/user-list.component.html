@@ -1,1 +1,8 @@
-<app-standard-list [entityName]="'user'" [renderOptions]="renderOptions" [routingPrefix]="routingPrefix" [queryParameters]="queryParameters" [isSubHierarchy]="isSubHierarchy"></app-standard-list>
+<app-standard-list
+  [entityName]="'user'"
+  [createPermission]="'admin.user.store'"
+  [renderOptions]="renderOptions"
+  [routingPrefix]="routingPrefix"
+  [queryParameters]="queryParameters"
+  [isSubHierarchy]="isSubHierarchy">
+</app-standard-list>

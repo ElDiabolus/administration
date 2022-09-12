@@ -31,6 +31,16 @@ import { ShopEditComponent } from './page/organization/shop-edit/shop-edit.compo
 import { EntityComboBoxComponent } from './elements/standard-form/renderer/entity-combo-box/entity-combo-box.component';
 import { UserListComponent } from './page/organization/user-list/user-list.component';
 import { UserEditComponent } from './page/organization/user-edit/user-edit.component';
+import { OpeningHoursRendererComponent } from './elements/standard-form/renderer/opening-hours-renderer/opening-hours-renderer.component';
+import { UserRoleRendererComponent } from './elements/standard-form/renderer/user-role-renderer/user-role-renderer.component';
+import { VisitListComponent } from './page/visit/visit-list/visit-list.component';
+import { VisitEditComponent } from './page/visit/visit-edit/visit-edit.component';
+import { LineItemListComponent } from './page/visit/line-item-list/line-item-list.component';
+import { LineItemEditComponent } from './page/visit/line-item-edit/line-item-edit.component';
+import { ReservationListComponent } from './page/reservation/reservation-list/reservation-list.component';
+import { ReservationEditComponent } from './page/reservation/reservation-edit/reservation-edit.component';
+import { DateRendererComponent } from './elements/standard-list/renderer/date-renderer/date-renderer.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -58,17 +68,28 @@ import { UserEditComponent } from './page/organization/user-edit/user-edit.compo
     ShopEditComponent,
     EntityComboBoxComponent,
     UserListComponent,
-    UserEditComponent
+    UserEditComponent,
+    OpeningHoursRendererComponent,
+    UserRoleRendererComponent,
+    VisitListComponent,
+    VisitEditComponent,
+    LineItemListComponent,
+    LineItemEditComponent,
+    ReservationListComponent,
+    ReservationEditComponent,
+    DateRendererComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NoopAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => EntityComboBoxComponent), multi: true },
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => OpeningHoursRendererComponent), multi: true },
     CookieService
   ],
   bootstrap: [AppComponent]

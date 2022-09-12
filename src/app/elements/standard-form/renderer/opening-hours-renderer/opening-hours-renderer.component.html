@@ -1,0 +1,6 @@
+<div *ngFor="let weekday of weekDays">
+  {{weekday.headline}}
+  <input type="time" [(ngModel)]="value[weekday.accessor][0].opens_at">
+  <input type="time" [(ngModel)]="value[weekday.accessor][0].closes_at">
+  <input type="number" min="0" [(ngModel)]="value[weekday.accessor][0].slots">
+</div>

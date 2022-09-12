@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "./api/services/authentication.service";
 import {CookieService} from "ng2-cookies";
+import {PrivilegeService} from "./privilege.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,11 @@ import {CookieService} from "ng2-cookies";
 export class AppComponent implements OnInit{
   title = 'caritas-administration';
 
-  constructor(protected authApiService: AuthenticationService, protected cookieService: CookieService) {
+  constructor(
+              protected authApiService: AuthenticationService,
+              protected cookieService: CookieService,
+              public privilegeService: PrivilegeService
+  ) {
   }
 
   public appInitialized: boolean = false;
@@ -23,21 +28,36 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
 
     let me = this;
-    this.authApiService.apiAuthHeartbeatGet().subscribe({
-      next(value: any): void {
-        sessionStorage.authInfo = JSON.stringify(value);
-        me.appInitialized = true;
-        console.log("HEARTBEAT");
-        console.log(value);
-      },
-      error(err: any): void {
-        me.appInitialized = true;
-        //handled by AuthInterceptor
-      }
-    });
+    if(localStorage.hasLogin == "1") {
+      this.authApiService.apiAuthHeartbeatGet().subscribe({
+        next(value: any): void {
+          sessionStorage.authInfo = JSON.stringify(value);
+          me.appInitialized = true;
+          console.log("HEARTBEAT");
+          console.log(value);
+        },
+        error(err: any): void {
+          me.appInitialized = true;
+          //handled by AuthInterceptor
+        }
+      });
+    }
+    else
+    {
+      me.appInitialized = true;
+    }
 
     this.authApiService.apiHandshakeGet().toPromise().then(() => {
       console.log("handshaked");
+    });
+  }
+
+  logout()
+  {
+    this.authApiService.apiAuthLogoutPost().subscribe({
+      complete(): void {
+        delete localStorage.hasLogin;
+      }
     });
   }
 }

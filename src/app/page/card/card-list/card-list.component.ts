@@ -15,8 +15,8 @@ export class CardListComponent implements OnInit {
     {field: 'street', render: 'string', headline: 'street'},
     {field: 'postcode', render: 'string', headline: 'postcode'},
     {field: 'city', render: 'string', headline: 'city'},
-    {field: 'valid_from', render: 'string', headline: 'valid_from'},
-    {field: 'valid_until', render: 'string', headline: 'valid_until'},
+    {field: 'valid_from', render: 'date', headline: 'valid_from', displayTime: false},
+    {field: 'valid_until', render: 'date', headline: 'valid_until', displayTime: false},
     {field: 'comment', render: 'string', headline: 'comment'},
   ];
 

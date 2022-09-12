@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../../api/services/authentication.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,12 @@ export class LoginComponent implements OnInit {
   name: string = "";
   pw: string = "";
 
-  constructor(protected authApiService: AuthenticationService) { }
+  constructor(protected authApiService: AuthenticationService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      console.log(params);
+    });
   }
 
   login()

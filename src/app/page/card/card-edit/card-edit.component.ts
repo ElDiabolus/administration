@@ -17,8 +17,8 @@ export class CardEditComponent implements OnInit {
     {field: 'street', render: 'string', headline: 'street'},
     {field: 'postcode', render: 'string', headline: 'postcode'},
     {field: 'city', render: 'string', headline: 'city'},
-    {field: 'valid_from', render: 'string', headline: 'valid_from'},
-    {field: 'valid_until', render: 'string', headline: 'valid_until'},
+    {field: 'valid_from', render: 'datetime', headline: 'valid_from'},
+    {field: 'valid_until', render: 'datetime', headline: 'valid_until'},
     {field: 'comment', render: 'string', headline: 'comment'},
     {field: 'id', render: 'cardpdf', headline: 'download'},
   ];

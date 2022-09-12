@@ -1,0 +1,5 @@
+<app-standard-form  [entityName]="'visit'" [customApiPath]="'Visit'"  [customApiPathPost]="'Visit'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+
+<ng-container *ngIf="listQueryParams">
+  <app-line-item-list [queryParameters]="listQueryParams" [isSubHierarchy]="true"></app-line-item-list>
+</ng-container>

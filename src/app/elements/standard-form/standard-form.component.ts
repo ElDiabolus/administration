@@ -51,7 +51,8 @@ export class StandardFormComponent implements OnInit {
       if(!params.hasOwnProperty("id"))
       {
         this.entity = {};
-        this.setUrlParameters(params);
+        this.setAdditionalParameters(params);
+
         return;
       }
 
@@ -62,6 +63,7 @@ export class StandardFormComponent implements OnInit {
       this.apiService[apiCall](requestParams).subscribe({
         next(value: void): void {
           me.entity = value;
+          me.convertTimes();
         },
         error(err: any): void {
         }
@@ -69,15 +71,36 @@ export class StandardFormComponent implements OnInit {
     });
   }
 
-  setUrlParameters(urlParams)
+  convertTimes()
   {
     for(const renderOption of this.renderOptions)
     {
+      if(renderOption.render == 'datetime')
+      {
+        let utcDateTime = new Date(this.entity[renderOption.field]);
+        let htmlFormatDateTime = new Date(utcDateTime.getTime()-utcDateTime.getTimezoneOffset()*60*1000);
+        this.entity[renderOption.field] = htmlFormatDateTime.toISOString().split(".")[0].replace("T", " ");
+      }
+    }
+  }
 
+  setAdditionalParameters(urlParams)
+  {
+    for(const renderOption of this.renderOptions)
+    {
       if(renderOption.render == 'urlparameter')
       {
         let paramVal = urlParams[renderOption.urlparameter];
         this.entity[renderOption.field] = paramVal;
+      }
+
+      if(renderOption.render == 'role')
+      {
+        this.entity[renderOption.field] = 'inactive';
+      }
+      if(renderOption.render == 'entityarray')
+      {
+        this.entity[renderOption.field] = [];
       }
     }
   }
@@ -98,6 +121,14 @@ export class StandardFormComponent implements OnInit {
       }
     };
 
+    for(const renderOption of this.renderOptions)
+    {
+      if(renderOption.render == 'role')
+      {
+        this.entity[renderOption.targetField] = Array.isArray(this.entity[renderOption.field]) ? this.entity[renderOption.field][0] : this.entity[renderOption.field];
+      }
+    }
+
     if(this.entity.hasOwnProperty("id"))
     {
       let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'IdPut', this.customApiPath);
@@ -107,10 +138,11 @@ export class StandardFormComponent implements OnInit {
       callParams.body = this.entity;
       console.log(apiCall);
       console.log(callParams);
+      console.log(this.entity);
       this.apiService[apiCall](callParams).subscribe(responseObserver);
     }
     else
-    {
+    {console.log(this.entity);
       let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'Post', this.customApiPathPost);
       this.apiService[apiCall]({body: this.entity}).subscribe(responseObserver);
     }

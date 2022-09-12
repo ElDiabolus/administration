@@ -14,6 +14,12 @@ import {ProductTypeEditComponent} from "./page/product-type/product-type-edit/pr
 import {ProductTypeListComponent} from "./page/product-type/product-type-list/product-type-list.component";
 import {ShopEditComponent} from "./page/organization/shop-edit/shop-edit.component";
 import {UserEditComponent} from "./page/organization/user-edit/user-edit.component";
+import {VisitListComponent} from "./page/visit/visit-list/visit-list.component";
+import {VisitEditComponent} from "./page/visit/visit-edit/visit-edit.component";
+import {LineItemEditComponent} from "./page/visit/line-item-edit/line-item-edit.component";
+import {ReservationListComponent} from "./page/reservation/reservation-list/reservation-list.component";
+import {ReservationEditComponent} from "./page/reservation/reservation-edit/reservation-edit.component";
+import {LoginComponent} from "./page/login/login.component";
 
 const routes: Routes = [
   {path: 'organization-list', component: OrganizationListComponent},
@@ -42,6 +48,15 @@ const routes: Routes = [
   {path: ':topentity/:parentid/shop-new', component: ShopEditComponent},
   {path: ':topentity/:parentid/user-edit/:id', component: UserEditComponent},
   {path: ':topentity/:parentid/user-new', component: UserEditComponent},
+  {path: 'visit-list', component: VisitListComponent},
+  {path: 'visit-edit/:id', component: VisitEditComponent},
+  {path: 'visit-new', component: VisitEditComponent},
+  {path: ':topentity/:parentid/line-item-edit/:id', component: LineItemEditComponent},
+  {path: ':topentity/:parentid/line-item-new', component: LineItemEditComponent},
+  {path: 'reservation-list', component: ReservationListComponent},
+  {path: 'reservation-edit/:id', component: ReservationEditComponent},
+  {path: 'reservation-new', component: ReservationEditComponent},
+  {path: 'reset/:token', component: LoginComponent},
 ];
 
 @NgModule({

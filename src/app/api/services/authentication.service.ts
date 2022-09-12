@@ -241,7 +241,7 @@ export class AuthenticationService extends BaseService {
     body: {
 
 /**
- * E-Mail of the user. Must be a valid email address.
+ * E-Mail of the user.
  */
 'email': string;
 
@@ -308,7 +308,7 @@ export class AuthenticationService extends BaseService {
     body: {
 
 /**
- * E-Mail of the user. Must be a valid email address.
+ * E-Mail of the user.
  */
 'email': string;
 

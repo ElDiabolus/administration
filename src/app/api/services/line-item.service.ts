@@ -282,6 +282,10 @@ export class LineItemService extends BaseService {
 'visit_id'?: number;
 'person_id'?: number;
 'product_type_id'?: number;
+'person'?: {
+};
+'product_type'?: {
+};
 'created_at'?: string;
 'updated_at'?: string;
 }>> {
@@ -305,6 +309,10 @@ export class LineItemService extends BaseService {
         'visit_id'?: number;
         'person_id'?: number;
         'product_type_id'?: number;
+        'person'?: {
+        };
+        'product_type'?: {
+        };
         'created_at'?: string;
         'updated_at'?: string;
         }>;
@@ -336,6 +344,10 @@ export class LineItemService extends BaseService {
 'visit_id'?: number;
 'person_id'?: number;
 'product_type_id'?: number;
+'person'?: {
+};
+'product_type'?: {
+};
 'created_at'?: string;
 'updated_at'?: string;
 }> {
@@ -346,6 +358,10 @@ export class LineItemService extends BaseService {
 'visit_id'?: number;
 'person_id'?: number;
 'product_type_id'?: number;
+'person'?: {
+};
+'product_type'?: {
+};
 'created_at'?: string;
 'updated_at'?: string;
 }>) => r.body as {
@@ -353,6 +369,10 @@ export class LineItemService extends BaseService {
 'visit_id'?: number;
 'person_id'?: number;
 'product_type_id'?: number;
+'person'?: {
+};
+'product_type'?: {
+};
 'created_at'?: string;
 'updated_at'?: string;
 })

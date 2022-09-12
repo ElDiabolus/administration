@@ -10,10 +10,13 @@
       <ng-container *ngIf="column.render == 'mail'">
         <app-mail-renderer [value]="item[column.field]"></app-mail-renderer>
       </ng-container>
+      <ng-container *ngIf="column.render == 'date'">
+        <app-date-renderer [displayTime]="column.displayTime" [value]="item[column.field]"></app-date-renderer>
+      </ng-container>
     </ng-container>
-    <span [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-edit/', item.id]">EDIT</span>
+    <span [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-edit/', item.id]">SHOW ENTRY</span>
   </div>
-  <div [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-new']">NEW</div>
+  <div *ngIf="privilegeService.hasPrivelege(createPermission)" [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-new']">NEW</div>
   <div (click)="prevPage()" *ngIf="meta.current_page > 1">prev</div>
   <div (click)="nextPage()" *ngIf="meta.last_page > meta.current_page">next</div>
 </ng-container>

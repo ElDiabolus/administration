@@ -1,0 +1,12 @@
+<div *ngFor="let reservationsPerDay of dailyReservations">
+  {{reservationsPerDay.day}}
+  <div *ngFor="let reservation of reservationsPerDay.reservations">
+    {{ reservation.card.first_name }}
+    {{ reservation.card.last_name }}
+    <app-date-renderer [displayTime]="true" [value]="reservation.time"></app-date-renderer>
+    <span [routerLink]="['/reservation-edit/', reservation.id]">EDIT</span>
+  </div>
+</div>
+<div [routerLink]="['/reservation-new/']">NEW</div>
+<div (click)="prevWeek()">prev</div>
+<div (click)="nextWeek()">next</div>

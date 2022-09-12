@@ -8,6 +8,9 @@ import {PersonService} from "./api/services/person.service";
 import {ProductTypeService} from "./api/services/product-type.service";
 import {ShopService} from "./api/services/shop.service";
 import {UserService} from "./api/services/user.service";
+import {VisitService} from "./api/services/visit.service";
+import {LineItemService} from "./api/services/line-item.service";
+import {ReservationService} from "./api/services/reservation.service";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +24,11 @@ export class ApiOverviewService {
               protected personService: PersonService,
               protected productTypeService: ProductTypeService,
               protected shopService: ShopService,
-              protected userService: UserService) {
+              protected userService: UserService,
+              protected visitService: VisitService,
+              protected  lineItemService : LineItemService,
+              protected reservationService: ReservationService
+  ) {
 
   }
 

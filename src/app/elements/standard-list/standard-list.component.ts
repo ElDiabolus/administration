@@ -1,5 +1,6 @@
 import {Component, Injector, Input, OnInit} from '@angular/core';
 import {ApiOverviewService} from "../../api-overview.service";
+import {PrivilegeService} from "../../privilege.service";
 
 @Component({
   selector: 'app-standard-list',
@@ -8,7 +9,7 @@ import {ApiOverviewService} from "../../api-overview.service";
 })
 export class StandardListComponent implements OnInit {
 
-  constructor(private apiOverview: ApiOverviewService) { }
+  constructor(private apiOverview: ApiOverviewService, private privilegeService: PrivilegeService) { }
 
   @Input()
   public entityName;
@@ -29,6 +30,9 @@ export class StandardListComponent implements OnInit {
 
   @Input()
   isSubHierarchy = false;
+
+  @Input()
+  createPermission = '';
 
   protected apiService;
 

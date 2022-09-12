@@ -1,0 +1,7 @@
+<select [(ngModel)]="value[0]">
+  <option *ngFor="let role of roles"
+          [value]="role.id"
+  >
+    {{role.displayField}}
+  </option>
+</select>

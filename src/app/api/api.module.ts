@@ -4,19 +4,20 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
-import { ScheduleService } from './services/schedule.service';
-import { OrganizationService } from './services/organization.service';
-import { PersonService } from './services/person.service';
-import { UserService } from './services/user.service';
-import { ProductTypeService } from './services/product-type.service';
 import { ReservationService } from './services/reservation.service';
+import { OrganizationService } from './services/organization.service';
+import { PasswordResetService } from './services/password-reset.service';
+import { ShopService } from './services/shop.service';
+import { PersonService } from './services/person.service';
+import { ProductTypeService } from './services/product-type.service';
 import { LineItemService } from './services/line-item.service';
-import { VisitService } from './services/visit.service';
+import { UserService } from './services/user.service';
 import { CheckoutService } from './services/checkout.service';
 import { CardService } from './services/card.service';
-import { ShopService } from './services/shop.service';
+import { ScheduleService } from './services/schedule.service';
 import { LimitationService } from './services/limitation.service';
 import { PdfService } from './services/pdf.service';
+import { VisitService } from './services/visit.service';
 import { LimitationSetService } from './services/limitation-set.service';
 import { AuthenticationService } from './services/authentication.service';
 
@@ -28,19 +29,20 @@ import { AuthenticationService } from './services/authentication.service';
   exports: [],
   declarations: [],
   providers: [
-    ScheduleService,
-    OrganizationService,
-    PersonService,
-    UserService,
-    ProductTypeService,
     ReservationService,
+    OrganizationService,
+    PasswordResetService,
+    ShopService,
+    PersonService,
+    ProductTypeService,
     LineItemService,
-    VisitService,
+    UserService,
     CheckoutService,
     CardService,
-    ShopService,
+    ScheduleService,
     LimitationService,
     PdfService,
+    VisitService,
     LimitationSetService,
     AuthenticationService,
     ApiConfiguration

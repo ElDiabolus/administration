@@ -8,13 +8,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class LimitationSetEditComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(private route: ActivatedRoute) { }
 
   public renderOptions = [
     {field: 'name', render: 'string', headline: 'name'},
-    {field: 'valid_from', render: 'string', headline: 'valid_from'},
-    {field: 'valid_until', render: 'string', headline: 'valid_until'},
+    {field: 'valid_from', render: 'datetime', headline: 'valid_from'},
+    {field: 'valid_until', render: 'datetime', headline: 'valid_until'},
   ];
 
   public listQueryParams;
