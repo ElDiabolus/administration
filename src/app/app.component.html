@@ -1,14 +1,16 @@
 <ng-container *ngIf="appInitialized">
   <app-login *ngIf="!isLoggedIn()"></app-login>
   <ng-container *ngIf="isLoggedIn()">
-    <button (click)="logout()">Logout</button>
-    <a routerLink="/organization-list" *ngIf="privilegeService.hasPrivelege('admin.organization.index')">Organisationen</a><br/>
-    <a routerLink="/card-list" *ngIf="privilegeService.hasPrivelege('admin.card.index')">Karten</a><br/>
-    <a routerLink="/limitation-set-list" *ngIf="privilegeService.hasPrivelege('admin.limitation.set.index')">Limitation Sets</a><br/>
-    <a routerLink="/product-type-list" *ngIf="privilegeService.hasPrivelege('admin.product-type.index')">Produkttypen</a><br/>
-    <a routerLink="/visit-list" *ngIf="privilegeService.hasPrivelege('admin.visit.index')">Visits</a><br/>
-    <a routerLink="/reservation-list" *ngIf="privilegeService.hasPrivelege('admin.reservation.index.own')">Reservations</a><br/>
-    <hr>
+    <ul>
+      <li style="float: right"><button  (click)="logout()">Logout</button></li>
+      <li><a routerLink="/organization-list" *ngIf="privilegeService.hasPrivelege('admin.organization.index')">Organisationen</a></li>
+      <li><a routerLink="/card-list" *ngIf="privilegeService.hasPrivelege('admin.card.index')">Karten</a></li>
+      <li><a routerLink="/limitation-set-list" *ngIf="privilegeService.hasPrivelege('admin.limitation.set.index')">Limitation Sets</a></li>
+      <li><a routerLink="/product-type-list" *ngIf="privilegeService.hasPrivelege('admin.product-type.index')">Produkttypen</a></li>
+      <li><a routerLink="/visit-list" *ngIf="privilegeService.hasPrivelege('admin.visit.index')">Visits</a></li>
+      <li><a routerLink="/reservation-list" *ngIf="privilegeService.hasPrivelege('admin.reservation.index.own')">Reservations</a></li>
+
+    </ul>
     <router-outlet></router-outlet>
   </ng-container>
 </ng-container>
