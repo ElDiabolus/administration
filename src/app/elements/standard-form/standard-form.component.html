@@ -12,42 +12,52 @@
 <div class="contact-form" style="padding:40px 5px;" *ngIf="entity">
     <ng-container *ngFor="let column of renderOptions">
       <ng-container *ngIf="column.render == 'string'">
-        {{column.headline}}<input type="text" [(ngModel)]="entity[column.field]"/>
+        <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p>
+        <input type="text" [(ngModel)]="entity[column.field]" [readOnly]="column.readOnly"/>
       </ng-container>
       <ng-container *ngIf="column.render == 'input'">
-        {{column.headline}}<input [type]="column.htmlType" [(ngModel)]="entity[column.field]"/>
+        <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p>
+        <input [type]="column.htmlType" [(ngModel)]="entity[column.field]" [readOnly]="column.readOnly"/>
       </ng-container>
       <ng-container *ngIf="column.render == 'cardpdf'">
-        {{column.headline}}<app-card-pdf-renderer [id]="entity[column.field]"></app-card-pdf-renderer>
+        <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p>
+        <app-card-pdf-renderer [id]="entity[column.field]"></app-card-pdf-renderer>
       </ng-container>
       <ng-container *ngIf="column.render == 'hidden'">
-        <ng-container *ngIf="column.display">{{column.headline}}{{entity[column.field]}}</ng-container><input type=hidden [id]="entity[column.field]"/>
+        <ng-container *ngIf="column.display">
+          <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p>
+          {{entity[column.field]}}
+        </ng-container><br>
+        <input type=hidden [id]="entity[column.field]"/>
       </ng-container>
       <ng-container *ngIf="column.render == 'urlparameter'">
-        <ng-container *ngIf="column.display">{{column.headline}}{{entity[column.field]}}</ng-container><input type="hidden" [(ngModel)]="entity[column.field]"/>
+        <ng-container *ngIf="column.display">
+          <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p>
+          {{entity[column.field]}}
+        </ng-container>
+        <input type="hidden" [(ngModel)]="entity[column.field]"/>
       </ng-container>
       <ng-container *ngIf="column.render == 'entity'">
-        {{column.headline}}<app-entity-combo-box [(ngModel)]="entity[column.field]" [entityName]="column.entityName" [displayField]="column.displayField"></app-entity-combo-box>
+        <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p><app-entity-combo-box [(ngModel)]="entity[column.field]" [entityName]="column.entityName" [displayField]="column.displayField"></app-entity-combo-box>
       </ng-container>
       <ng-container *ngIf="column.render == 'entityarray'">
-        {{column.headline}}<app-entity-combo-box [(ngModel)]="entity[column.field][0]" [entityName]="column.entityName" [displayField]="column.displayField"></app-entity-combo-box>
+        <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p><app-entity-combo-box [(ngModel)]="entity[column.field][0]" [entityName]="column.entityName" [displayField]="column.displayField"></app-entity-combo-box>
       </ng-container>
       <ng-container *ngIf="column.render == 'openinghours'">
-        {{column.headline}}<app-opening-hours-renderer [(ngModel)]="entity[column.field]"></app-opening-hours-renderer>
+        <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p><app-opening-hours-renderer [(ngModel)]="entity[column.field]"></app-opening-hours-renderer>
       </ng-container>
       <ng-container *ngIf="column.render == 'datetime'">
-        {{column.headline}}<input type="datetime-local" [(ngModel)]="entity[column.field]"/>
+        <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p><input type="datetime-local" [(ngModel)]="entity[column.field]"/>
         <!--<app-datetime-renderer [(ngModel)]="entity[column.field]"></app-datetime-renderer>-->
       </ng-container>
       <ng-container *ngIf="column.render == 'password'">
-        {{column.headline}}<input type="password" [(ngModel)]="entity[column.field]"/>
+        <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p><input type="password" [(ngModel)]="entity[column.field]"/>
       </ng-container>
 
     <ng-container *ngIf="column.render == 'role' && entity[column.field] !== null">
       {{column.headline}}
       <app-user-role-renderer [(ngModel)]="entity[column.field]"></app-user-role-renderer>
     </ng-container>
-    <br/>
   </ng-container>
 
 </div>
