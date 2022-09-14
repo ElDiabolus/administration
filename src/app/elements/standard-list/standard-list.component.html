@@ -31,9 +31,9 @@
     </tr>
   </table>
   <div class="pagination">
-  <a class="previous" (click)="prevPage()" *ngIf="meta.current_page > 1">prev</a>
-  <p class = "pagination-number">1</p>
-  <a class="next" (click)="nextPage()" *ngIf="meta.last_page > meta.current_page">next</a>
+    <div class="previous" (click)="prevPage()" *ngIf="meta.current_page > 1">vorherige Seite</div>
+    <div class="pagination-number">{{ meta.current_page }}</div>
+    <div class="next" (click)="nextPage()" *ngIf="meta.last_page > meta.current_page">nächste Seite</div>
   </div>
 </ng-container>
 

@@ -49,27 +49,44 @@ a:hover {
   float: left;
   background-color: #f1f1f1;
   color: black;
+  display: block;
+  padding: 20px;
+  cursor: pointer;
+  width: 40px;
+  text-align: center;
 }
 
 .next {
-  float: right;
+  float: left;
   background-color: #E3000E;
   color: white;
+  display: block;
+  padding: 20px;
+  cursor: pointer;
+  width: 40px;
+  text-align: center;
 }
 
 .pagination{
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
+  max-width: 220px;
+  width: fit-content;
+  margin-top: 20px;
 }
+
 .pagination-number{
   text-align: center;
-
-
+  float: left;
+  width: 60px;
+  height: 58px;
+  padding: 20px 0;
 }
+
 .button-show-entry{
   margin-top: 8px;
 }
+
 .button-show-entry:hover{
   cursor: pointer;
   background-color: #E3000E;
