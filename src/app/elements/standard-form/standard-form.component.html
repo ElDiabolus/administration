@@ -1,10 +1,9 @@
 <ng-container *ngIf="!customReturnPath">
-  <div [routerLink]="['/'+entityName+'-list']">BACK</div>
+  <button class="button-back" [routerLink]="['/'+entityName+'-list']">BACK</button>
 </ng-container>
 <ng-container *ngIf="customReturnPath">
-  <div [routerLink]="[customReturnPath]">BACK</div>
+  <button class="button-back" [routerLink]="[customReturnPath]">BACK</button>
 </ng-container>
-
 <ng-container *ngIf="entity">
     <ng-container *ngFor="let column of renderOptions">
       <ng-container *ngIf="column.render == 'string'">
@@ -39,13 +38,13 @@
         {{column.headline}}<input type="password" [(ngModel)]="entity[column.field]"/>
       </ng-container>
 
-      <ng-container *ngIf="column.render == 'role' && entity[column.field] !== null">
-        {{column.headline}}<app-user-role-renderer [(ngModel)]="entity[column.field]"></app-user-role-renderer>
-      </ng-container>
-      <br/>
+    <ng-container *ngIf="column.render == 'role' && entity[column.field] !== null">
+      {{column.headline}}
+      <app-user-role-renderer [(ngModel)]="entity[column.field]"></app-user-role-renderer>
     </ng-container>
+    <br/>
+  </ng-container>
 
 </ng-container>
-
-<button (click)="save()">Speichern</button>
-<button *ngIf="entity && entity.id" (click)="delete()">löschen</button>
+<button class="button-save" (click)="save()">Speichern</button>
+<button class="button-delete" *ngIf="entity && entity.id" (click)="delete()">Löschen</button>
