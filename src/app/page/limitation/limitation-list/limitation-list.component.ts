@@ -10,9 +10,8 @@ export class LimitationListComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'product_type__name', render: 'string', headline: 'product_type__name'},
-    {field: 'product_type__icon', render: 'string', headline: 'product_type__icon'},
-    {field: 'limit', render: 'string', headline: 'limit'},
+    {field: 'product_type__name', render: 'string', headline: 'Produkttyp'},
+    {field: 'limit', render: 'string', headline: 'Limit'},
   ];
 
   @Input()

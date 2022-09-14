@@ -1,10 +1,15 @@
-<ng-container *ngIf="!customReturnPath">
-  <button class="button-back" [routerLink]="['/'+entityName+'-list']">BACK</button>
-</ng-container>
-<ng-container *ngIf="customReturnPath">
-  <button class="button-back" [routerLink]="[customReturnPath]">BACK</button>
-</ng-container>
-<ng-container *ngIf="entity">
+<div>
+  <ng-container *ngIf="!customReturnPath">
+    <button class="button-back" [routerLink]="['/'+entityName+'-list']">Zurück</button>
+  </ng-container>
+  <ng-container *ngIf="customReturnPath">
+    <button class="button-back" [routerLink]="[customReturnPath]">Zurück</button>
+  </ng-container>
+</div>
+
+<br>
+
+<div class="contact-form" style="padding:40px 5px;" *ngIf="entity">
     <ng-container *ngFor="let column of renderOptions">
       <ng-container *ngIf="column.render == 'string'">
         {{column.headline}}<input type="text" [(ngModel)]="entity[column.field]"/>
@@ -45,6 +50,6 @@
     <br/>
   </ng-container>
 
-</ng-container>
-<button class="button-save" (click)="save()">Speichern</button>
-<button class="button-delete" *ngIf="entity && entity.id" (click)="delete()">Löschen</button>
+</div>
+<button class="button-save"  *ngIf="privilegeService.hasPrivelege(savePermission)" (click)="save()">Speichern</button>
+<button class="button-delete" *ngIf="entity && entity.id && privilegeService.hasPrivelege(deletePermission)" (click)="delete()">Löschen</button>

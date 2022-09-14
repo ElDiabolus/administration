@@ -10,9 +10,9 @@ export class LimitationSetListComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'name', render: 'string', headline: 'name'},
-    {field: 'valid_from', render: 'string', headline: 'valid_from'},
-    {field: 'valid_until', render: 'string', headline: 'valid_until'},
+    {field: 'name', render: 'string', headline: 'Name'},
+    {field: 'valid_from', render: 'string', headline: 'gültig von'},
+    {field: 'valid_until', render: 'string', headline: 'gültig bis'},
   ];
 
   ngOnInit(): void {

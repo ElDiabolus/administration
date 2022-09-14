@@ -1,1 +1,9 @@
-<app-standard-form  [entityName]="'product-type'" [customApiPath]="'ProductType'"  [customApiPathPost]="'ProductType'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<app-standard-form
+  [entityName]="'product-type'"
+  [customApiPath]="'ProductType'"
+  [customApiPathPost]="'ProductType'"
+  [renderOptions]="renderOptions"
+  [savePermission]="'admin.product-type.update'"
+  [deletePermission]="'admin.product-type.destroy'"
+  [idParameterField]="'id'">
+</app-standard-form>

@@ -1,4 +1,6 @@
 Mail: <input type="text" [(ngModel)]="name"/>
-PW: <input type="password" [(ngModel)]="pw"/>
-<button (click)="login()">LOGIN</button>
+<ng-container *ngIf="!isDisplayResetPassword">PW: <input type="password" [(ngModel)]="pw"/></ng-container>
+<button *ngIf="!isDisplayResetPassword" (click)="login()">Login</button><br/>
+<a *ngIf="!isDisplayResetPassword" (click)="displayResetPassword()">Passwort vergessen?</a>
+<button *ngIf="isDisplayResetPassword" (click)="resetPassword()">Passwort zurücksetzen</button>
 

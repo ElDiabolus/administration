@@ -11,9 +11,9 @@ export class LimitationSetEditComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   public renderOptions = [
-    {field: 'name', render: 'string', headline: 'name'},
-    {field: 'valid_from', render: 'datetime', headline: 'valid_from'},
-    {field: 'valid_until', render: 'datetime', headline: 'valid_until'},
+    {field: 'name', render: 'string', headline: 'Name'},
+    {field: 'valid_from', render: 'datetime', headline: 'gültig von'},
+    {field: 'valid_until', render: 'datetime', headline: 'gültig bis'},
   ];
 
   public listQueryParams;

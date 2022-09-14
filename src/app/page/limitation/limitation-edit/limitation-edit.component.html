@@ -1,1 +1,9 @@
-<app-standard-form [entityName]="'limitation'" [customApiPath]="'LimitationLimit'"  [customApiPathPost]="'LimitationLimit'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<app-standard-form
+  [entityName]="'limitation'"
+  [customApiPath]="'LimitationLimit'"
+  [customApiPathPost]="'LimitationLimit'"
+  [renderOptions]="renderOptions"
+  [savePermission]="'admin.limitation.limit.update'"
+  [deletePermission]="'admin.limitation.limit.destroy'"
+  [idParameterField]="'id'">
+</app-standard-form>

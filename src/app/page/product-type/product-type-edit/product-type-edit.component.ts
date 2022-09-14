@@ -13,8 +13,8 @@ export class ProductTypeEditComponent implements OnInit {
   }
 
   public renderOptions = [
-    {field: 'name', render: 'string', headline: 'name'},
-    {field: 'icon', render: 'string', headline: 'icon'}
+    {field: 'name', render: 'string', headline: 'Name'},
+    {field: 'icon', render: 'string', headline: 'Icon'}
   ];
 
 }

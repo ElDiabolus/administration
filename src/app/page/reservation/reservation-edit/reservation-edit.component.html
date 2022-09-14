@@ -1,1 +1,7 @@
-<app-standard-form  [entityName]="'reservation'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<app-standard-form
+  [entityName]="'reservation'"
+  [renderOptions]="renderOptions"
+  [savePermission]="'admin.reservation.update'"
+  [deletePermission]="'admin.reservation.destroy'"
+  [idParameterField]="'id'">
+</app-standard-form>

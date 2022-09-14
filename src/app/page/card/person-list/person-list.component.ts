@@ -10,9 +10,9 @@ export class PersonListComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'card_id', render: 'string', headline: 'card_id'},
-    {field: 'gender', render: 'string', headline: 'gender'},
-    {field: 'age', render: 'string', headline: 'age'},
+    {field: 'card_id', render: 'string', headline: 'Kartennummer'},
+    {field: 'gender', render: 'string', headline: 'Geschlecht'},
+    {field: 'age', render: 'string', headline: 'Alter'},
   ];
 
   @Input()

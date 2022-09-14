@@ -10,10 +10,10 @@ export class PersonEditComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'card_id', render: 'hidden', headline: 'card_id'},
-    {field: 'gender', render: 'string', headline: 'gender'},
-    {field: 'age', render: 'input', headline: 'age', htmlType:'number'},
-    {field: 'limitation_sets', render: 'entityarray', headline: 'limitation_sets', entityName: 'limitation-set', displayField:"name"},
+    {field: 'card_id', render: 'hidden', headline: 'Kartennummer'},
+    {field: 'gender', render: 'string', headline: 'Geschlecht'},
+    {field: 'age', render: 'input', headline: 'Alter', htmlType:'number'},
+    {field: 'limitation_sets', render: 'entityarray', headline: 'Limitationsgruppe', entityName: 'limitation-set', displayField:"name"},
   ];
 
   ngOnInit(): void {

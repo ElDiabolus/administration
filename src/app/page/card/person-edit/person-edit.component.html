@@ -1,1 +1,7 @@
-<app-standard-form [entityName]="'person'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<app-standard-form
+  [entityName]="'person'"
+  [renderOptions]="renderOptions"
+  [savePermission]="'admin.person.update'"
+  [deletePermission]="'admin.person.destroy'"
+  [idParameterField]="'id'">
+</app-standard-form>

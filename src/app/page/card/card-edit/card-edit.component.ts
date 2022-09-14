@@ -12,15 +12,15 @@ export class CardEditComponent implements OnInit {
                 private router: Router) { }
 
   public renderOptions = [
-    {field: 'last_name', render: 'string', headline: 'last_name'},
-    {field: 'first_name', render: 'string', headline: 'first_name'},
-    {field: 'street', render: 'string', headline: 'street'},
-    {field: 'postcode', render: 'string', headline: 'postcode'},
-    {field: 'city', render: 'string', headline: 'city'},
-    {field: 'valid_from', render: 'datetime', headline: 'valid_from'},
-    {field: 'valid_until', render: 'datetime', headline: 'valid_until'},
-    {field: 'comment', render: 'string', headline: 'comment'},
-    {field: 'id', render: 'cardpdf', headline: 'download'},
+    {field: 'last_name', render: 'string', headline: 'Nachname'},
+    {field: 'first_name', render: 'string', headline: 'Vorname'},
+    {field: 'street', render: 'string', headline: 'Straße'},
+    {field: 'postcode', render: 'string', headline: 'PLZ'},
+    {field: 'city', render: 'string', headline: 'Stadt'},
+    {field: 'valid_from', render: 'datetime', headline: 'gültig von'},
+    {field: 'valid_until', render: 'datetime', headline: 'gültig bis'},
+    {field: 'comment', render: 'string', headline: 'Kommentar'},
+    {field: 'id', render: 'cardpdf'},
   ];
 
   public listQueryParams;

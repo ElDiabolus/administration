@@ -17,7 +17,7 @@ export class VisitEditComponent implements OnInit {
   public id;
 
   public renderOptions = [
-    {field: 'card_id', render: 'string', headline: 'card_id'},
+    {field: 'card_id', render: 'string', headline: 'Kartennummer', readOnly: true},
   ];
 
   ngOnInit(): void {

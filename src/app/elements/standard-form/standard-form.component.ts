@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ApiOverviewService} from "../../api-overview.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {PrivilegeService} from "../../privilege.service";
 
 @Component({
   selector: 'app-standard-form',
@@ -11,7 +12,7 @@ export class StandardFormComponent implements OnInit {
   public entity;
 
   constructor(private apiOverview: ApiOverviewService, private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router, public privilegeService: PrivilegeService) { }
 
   @Input()
   public entityName;
@@ -30,6 +31,12 @@ export class StandardFormComponent implements OnInit {
 
   @Input()
   public idParameterField;
+
+  @Input()
+  public savePermission = '';
+
+  @Input()
+  public deletePermission = '';
 
   protected apiService;
 

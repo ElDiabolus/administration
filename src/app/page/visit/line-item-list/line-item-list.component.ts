@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class LineItemListComponent implements OnInit {
 
   public renderOptions = [
-    {field: 'product_type__name', render: 'string', headline: 'card_id'}
+    {field: 'product_type__name', render: 'string', headline: 'Produkttyp'}
   ];
 
   constructor() { }

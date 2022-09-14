@@ -25,7 +25,6 @@ import { PersonEditComponent } from './page/card/person-edit/person-edit.compone
 import { ProductTypeListComponent } from './page/product-type/product-type-list/product-type-list.component';
 import { ProductTypeEditComponent } from './page/product-type/product-type-edit/product-type-edit.component';
 import { CardPdfRendererComponent } from './elements/standard-form/renderer/card-pdf-renderer/card-pdf-renderer.component';
-import { SubEntityListComponent } from './elements/sub-entity-list/sub-entity-list.component';
 import { ShopListComponent } from './page/organization/shop-list/shop-list.component';
 import { ShopEditComponent } from './page/organization/shop-edit/shop-edit.component';
 import { EntityComboBoxComponent } from './elements/standard-form/renderer/entity-combo-box/entity-combo-box.component';
@@ -42,6 +41,7 @@ import { ReservationEditComponent } from './page/reservation/reservation-edit/re
 import { DateRendererComponent } from './elements/standard-list/renderer/date-renderer/date-renderer.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
+import { IconRendererComponent } from './elements/standard-list/renderer/icon-renderer/icon-renderer.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,6 @@ import {MatTableModule} from '@angular/material/table';
     ProductTypeListComponent,
     ProductTypeEditComponent,
     CardPdfRendererComponent,
-    SubEntityListComponent,
     ShopListComponent,
     ShopEditComponent,
     EntityComboBoxComponent,
@@ -78,7 +77,8 @@ import {MatTableModule} from '@angular/material/table';
     LineItemEditComponent,
     ReservationListComponent,
     ReservationEditComponent,
-    DateRendererComponent
+    DateRendererComponent,
+    IconRendererComponent
   ],
   imports: [
     BrowserModule,

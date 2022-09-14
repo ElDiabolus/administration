@@ -1,4 +1,10 @@
-<app-standard-form [entityName]="'card'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<app-standard-form
+  [entityName]="'card'"
+  [renderOptions]="renderOptions"
+  [savePermission]="'admin.card.update'"
+  [deletePermission]="'admin.card.destroy'"
+  [idParameterField]="'id'">
+</app-standard-form>
 <br/>
 <hr>
 <ng-container *ngIf="listQueryParams">

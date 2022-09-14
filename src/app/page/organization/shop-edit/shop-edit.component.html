@@ -1,1 +1,7 @@
-<app-standard-form  [entityName]="'shop'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<app-standard-form
+  [entityName]="'shop'"
+  [renderOptions]="renderOptions"
+  [savePermission]="'admin.shop.update'"
+  [deletePermission]="'admin.shop.destroy'"
+  [idParameterField]="'id'">
+</app-standard-form>

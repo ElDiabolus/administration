@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../../api/services/authentication.service";
 import {ActivatedRoute} from "@angular/router";
+import {PasswordResetService} from "../../api/services/password-reset.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,9 @@ export class LoginComponent implements OnInit {
   name: string = "";
   pw: string = "";
 
-  constructor(protected authApiService: AuthenticationService, private route: ActivatedRoute) { }
+  public isDisplayResetPassword = false;
+
+  constructor(protected authApiService: AuthenticationService, private route: ActivatedRoute, private passwordResetService: PasswordResetService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -33,6 +36,23 @@ export class LoginComponent implements OnInit {
       localStorage.hasLogin = 1;
     });
 
+  }
+
+  displayResetPassword()
+  {
+    this.isDisplayResetPassword = true;
+    //TODO
+  }
+
+  resetPassword()
+  {
+    this.passwordResetService.apiPasswordForgotPost({body:{email:this.name}}).subscribe({
+      complete(): void {
+      }, error(err: any): void {
+      }, next(value: void): void {
+        //TODO
+      }
+    });
   }
 
 }

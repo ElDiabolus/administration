@@ -1,1 +1,7 @@
-<app-standard-form  [entityName]="'user'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<app-standard-form
+  [entityName]="'user'"
+  [renderOptions]="renderOptions"
+  [savePermission]="'admin.user.assign.role.inactive'"
+  [deletePermission]="'admin.user.assign.role.instance_manager'"
+  [idParameterField]="'id'">
+</app-standard-form>

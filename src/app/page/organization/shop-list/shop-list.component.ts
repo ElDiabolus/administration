@@ -10,10 +10,10 @@ export class ShopListComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'name', render: 'string', headline: 'name'},
-    {field: 'street', render: 'string', headline: 'street'},
-    {field: 'postcode', render: 'string', headline: 'postcode'},
-    {field: 'city', render: 'string', headline: 'city'},
+    {field: 'name', render: 'string', headline: 'Name'},
+    {field: 'street', render: 'string', headline: 'Straße'},
+    {field: 'postcode', render: 'string', headline: 'PLZ'},
+    {field: 'city', render: 'string', headline: 'Stadt'},
   ];
 
   @Input()

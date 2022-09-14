@@ -1,4 +1,12 @@
-<app-standard-form [entityName]="'limitation-set'" [customApiPath]="'LimitationSet'" [customApiPathPost]="'LimitationSet'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<app-standard-form
+  [entityName]="'limitation-set'"
+  [customApiPath]="'LimitationSet'"
+  [customApiPathPost]="'LimitationSet'"
+  [renderOptions]="renderOptions"
+  [savePermission]="'admin.limitation.set.update'"
+  [deletePermission]="'admin.limitation.set.destroy'"
+  [idParameterField]="'id'">
+</app-standard-form>
 <hr>
 <ng-container *ngIf="listQueryParams">
   <app-limitation-list [queryParameters]="listQueryParams" [isSubHierarchy]="true"></app-limitation-list>

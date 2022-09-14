@@ -1,8 +1,15 @@
-<app-standard-form  [entityName]="'organization'" [renderOptions]="renderOptions" [idParameterField]="'id'"></app-standard-form>
+<app-standard-form
+  [entityName]="'organization'"
+  [renderOptions]="renderOptions"
+  [savePermission]="'admin.organization.update'"
+  [deletePermission]="'admin.organization.destroy'"
+  [idParameterField]="'id'">
+</app-standard-form>
 <hr>
 <ng-container *ngIf="listQueryParams">
   <app-shop-list [queryParameters]="listQueryParams" [isSubHierarchy]="true"></app-shop-list>
 </ng-container>
+<hr>
 <ng-container *ngIf="listQueryParams">
   <app-user-list [queryParameters]="listQueryParams" [isSubHierarchy]="true"></app-user-list>
 </ng-container>

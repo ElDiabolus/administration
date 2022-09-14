@@ -33,8 +33,6 @@ export class AppComponent implements OnInit{
         next(value: any): void {
           sessionStorage.authInfo = JSON.stringify(value);
           me.appInitialized = true;
-          console.log("HEARTBEAT");
-          console.log(value);
         },
         error(err: any): void {
           me.appInitialized = true;
@@ -48,7 +46,7 @@ export class AppComponent implements OnInit{
     }
 
     this.authApiService.apiHandshakeGet().toPromise().then(() => {
-      console.log("handshaked");
+
     });
   }
 

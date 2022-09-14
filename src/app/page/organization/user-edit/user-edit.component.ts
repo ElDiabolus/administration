@@ -13,11 +13,11 @@ export class UserEditComponent implements OnInit {
   }
 
   public renderOptions = [
-    {field: 'name', render: 'string', headline: 'name'},
-    {field: 'email', render: 'input', htmlType:"email", headline: 'email'},
-    {field: 'password', render: 'password', headline: 'password'},
-    {field: 'password_confirmation', render: 'password', headline: 'password confirmation'},
-    {field: 'roles', render: 'role', headline: 'role', targetField: 'role'},
+    {field: 'name', render: 'string', headline: 'Name'},
+    {field: 'email', render: 'input', htmlType:"email", headline: 'E-Mail'},
+    {field: 'password', render: 'password', headline: 'Passwort'},
+    {field: 'password_confirmation', render: 'password', headline: 'Passwortwiederholung'},
+    {field: 'roles', render: 'role', headline: 'Rolle', targetField: 'role'},
     {field: 'organization_id', render: 'urlparameter', headline: 'organization_id', urlparameter: 'parentid'},
   ];
 }

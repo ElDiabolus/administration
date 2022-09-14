@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubEntityListComponent } from './sub-entity-list.component';
+import { IconRendererComponent } from './icon-renderer.component';
 
-describe('SubEntityListComponent', () => {
-  let component: SubEntityListComponent;
-  let fixture: ComponentFixture<SubEntityListComponent>;
+describe('IconRendererComponent', () => {
+  let component: IconRendererComponent;
+  let fixture: ComponentFixture<IconRendererComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubEntityListComponent ]
+      declarations: [ IconRendererComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SubEntityListComponent);
+    fixture = TestBed.createComponent(IconRendererComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

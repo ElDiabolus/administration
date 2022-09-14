@@ -1,13 +1,14 @@
 <ng-container *ngIf="listItems">
   <button class="table-button-new" type="button" *ngIf="privilegeService.hasPrivelege(createPermission)"
        [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-new']">
-    NEW
+    Neuer Eintrag
   </button>
   <table class="table-general">
     <tr>
       <ng-container *ngFor="let column of renderOptions">
         <th>{{ column.headline }}</th>
       </ng-container>
+      <th>Aktionen</th>
     </tr>
     <tr *ngFor="let item of listItems.items">
       <ng-container *ngFor="let column of renderOptions">
@@ -21,9 +22,12 @@
           <ng-container *ngIf="column.render == 'date'">
             <app-date-renderer [displayTime]="column.displayTime" [value]="item[column.field]"></app-date-renderer>
           </ng-container>
+          <ng-container *ngIf="column.render == 'icon'">
+            <app-icon-renderer  [value]="item[column.field]"></app-icon-renderer>
+          </ng-container>
         </td>
       </ng-container>
-      <button class="button-show-entry" [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-edit/', item.id]">SHOW ENTRY</button>
+      <button class="button-show-entry" [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-edit/', item.id]">Eintrag bearbeiten</button>
     </tr>
   </table>
   <div class="pagination">

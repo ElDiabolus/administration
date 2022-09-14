@@ -10,14 +10,14 @@ export class CardListComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'last_name', render: 'string', headline: 'last_name'},
-    {field: 'first_name', render: 'string', headline: 'first_name'},
-    {field: 'street', render: 'string', headline: 'street'},
-    {field: 'postcode', render: 'string', headline: 'postcode'},
-    {field: 'city', render: 'string', headline: 'city'},
-    {field: 'valid_from', render: 'date', headline: 'valid_from', displayTime: false},
-    {field: 'valid_until', render: 'date', headline: 'valid_until', displayTime: false},
-    {field: 'comment', render: 'string', headline: 'comment'},
+    {field: 'last_name', render: 'string', headline: 'Nachname'},
+    {field: 'first_name', render: 'string', headline: 'Vorname'},
+    {field: 'street', render: 'string', headline: 'Straße'},
+    {field: 'postcode', render: 'string', headline: 'PLZ'},
+    {field: 'city', render: 'string', headline: 'Stadt'},
+    {field: 'valid_from', render: 'date', headline: 'gültig von', displayTime: false},
+    {field: 'valid_until', render: 'date', headline: 'gültig bis', displayTime: false},
+    {field: 'comment', render: 'string', headline: 'Kommentar'},
   ];
 
   ngOnInit(): void {

@@ -10,8 +10,9 @@ export class UserListComponent implements OnInit {
 
 
   public renderOptions = [
-    {field: 'name', render: 'string', headline: 'name'},
-    {field: 'email', render: 'mail', headline: 'mail'}
+    {field: 'name', render: 'string', headline: 'Name'},
+    {field: 'email', render: 'mail', headline: 'E-Mail'},
+    {field: 'organization__name', render: 'string', headline: 'Organisation'}
   ];
 
   @Input()

@@ -10,9 +10,9 @@ export class VisitListComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'card__first_name', render: 'string', headline: 'id'},
-    {field: 'card__last_name', render: 'string', headline: 'id'},
-    {field: 'updated_at', render: 'string', headline: 'id'},
+    {field: 'card__first_name', render: 'string', headline: 'Vorname'},
+    {field: 'card__last_name', render: 'string', headline: 'Nachname'},
+    {field: 'updated_at', render: 'date', headline: 'Datum und Uhrzeit', displayTime: true},
   ];
 
   ngOnInit(): void {
