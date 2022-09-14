@@ -2,7 +2,7 @@
   <app-login *ngIf="!isLoggedIn()"></app-login>
   <ng-container *ngIf="isLoggedIn()">
     <ul>
-      <li style="float: right"><button  (click)="logout()">Logout</button></li>
+      <li style="float: right"><button class="button-logout"  (click)="logout()">Logout</button></li>
       <li><a routerLink="/organization-list" *ngIf="privilegeService.hasPrivelege('admin.organization.index')">Organisationen</a></li>
       <li><a routerLink="/card-list" *ngIf="privilegeService.hasPrivelege('admin.card.index')">Karten</a></li>
       <li><a routerLink="/limitation-set-list" *ngIf="privilegeService.hasPrivelege('admin.limitation.set.index')">Limitation Sets</a></li>

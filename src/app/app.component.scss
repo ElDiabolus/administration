@@ -18,11 +18,22 @@ li a {
   text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: #111;
 }
 
-.active {
-  background-color: #04AA6D;
+li a:active{
+  background-color: #E3000E;
+}
+
+.button-logout{
+  color: white;
+  padding: 10px 24px;
+  margin: 5px 5px;
+  background-color: transparent;
+  border: 2px solid white;
+}
+.button-logout:hover{
+  background-color:  #111;
+  cursor: pointer;
 }
