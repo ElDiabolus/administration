@@ -1,22 +1,37 @@
-<ng-container *ngFor="let column of renderOptions">
-  {{ column.headline }} |
-</ng-container>
 <ng-container *ngIf="listItems">
-  <div *ngFor="let item of listItems.items">
-    <ng-container *ngFor="let column of renderOptions">
-      <ng-container *ngIf="column.render == 'string'">
-        <app-string-renderer [value]="item[column.field]"></app-string-renderer>
+  <button class="table-button-new" type="button" *ngIf="privilegeService.hasPrivelege(createPermission)"
+       [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-new']">
+    NEW
+  </button>
+  <table class="table-general">
+    <tr>
+      <ng-container *ngFor="let column of renderOptions">
+        <th>{{ column.headline }}</th>
       </ng-container>
-      <ng-container *ngIf="column.render == 'mail'">
-        <app-mail-renderer [value]="item[column.field]"></app-mail-renderer>
+    </tr>
+    <tr *ngFor="let item of listItems.items">
+      <ng-container *ngFor="let column of renderOptions">
+        <td>
+          <ng-container *ngIf="column.render == 'string'">
+            <app-string-renderer [value]="item[column.field]"></app-string-renderer>
+          </ng-container>
+          <ng-container *ngIf="column.render == 'mail'">
+            <app-mail-renderer [value]="item[column.field]"></app-mail-renderer>
+          </ng-container>
+          <ng-container *ngIf="column.render == 'date'">
+            <app-date-renderer [displayTime]="column.displayTime" [value]="item[column.field]"></app-date-renderer>
+          </ng-container>
+        </td>
       </ng-container>
-      <ng-container *ngIf="column.render == 'date'">
-        <app-date-renderer [displayTime]="column.displayTime" [value]="item[column.field]"></app-date-renderer>
-      </ng-container>
-    </ng-container>
-    <span [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-edit/', item.id]">SHOW ENTRY</span>
+      <button class="button-show-entry" [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-edit/', item.id]">SHOW ENTRY</button>
+    </tr>
+  </table>
+  <div class="pagination">
+  <a class="previous" (click)="prevPage()" *ngIf="meta.current_page > 1">prev</a>
+  <p class = "pagination-number">1</p>
+  <a class="next" (click)="nextPage()" *ngIf="meta.last_page > meta.current_page">next</a>
   </div>
-  <div *ngIf="privilegeService.hasPrivelege(createPermission)" [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-new']">NEW</div>
-  <div (click)="prevPage()" *ngIf="meta.current_page > 1">prev</div>
-  <div (click)="nextPage()" *ngIf="meta.last_page > meta.current_page">next</div>
 </ng-container>
+
+
+

@@ -41,6 +41,7 @@ import { ReservationListComponent } from './page/reservation/reservation-list/re
 import { ReservationEditComponent } from './page/reservation/reservation-edit/reservation-edit.component';
 import { DateRendererComponent } from './elements/standard-list/renderer/date-renderer/date-renderer.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     NoopAnimationsModule,
+    MatTableModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
