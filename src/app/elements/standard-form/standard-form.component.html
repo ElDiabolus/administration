@@ -54,10 +54,14 @@
         <p style="margin-top: 10px;margin-bottom:5px;">{{column.headline}}</p><input type="password" [(ngModel)]="entity[column.field]"/>
       </ng-container>
 
-    <ng-container *ngIf="column.render == 'role' && entity[column.field] !== null">
-      {{column.headline}}
-      <app-user-role-renderer [(ngModel)]="entity[column.field]"></app-user-role-renderer>
-    </ng-container>
+      <ng-container *ngIf="column.render == 'role' && entity[column.field] !== null">
+        {{column.headline}}
+        <app-user-role-renderer [(ngModel)]="entity[column.field]"></app-user-role-renderer>
+      </ng-container>
+      <ng-container *ngIf="column.render == 'gender'">
+        {{column.headline}}
+        <app-gender-select-renderer [(ngModel)]="entity[column.field]"></app-gender-select-renderer>
+      </ng-container>
   </ng-container>
 
 </div>

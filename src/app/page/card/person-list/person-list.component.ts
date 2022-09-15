@@ -11,7 +11,7 @@ export class PersonListComponent implements OnInit {
 
   public renderOptions = [
     {field: 'card_id', render: 'string', headline: 'Kartennummer'},
-    {field: 'gender', render: 'string', headline: 'Geschlecht'},
+    {field: 'gender', render: 'gender', headline: 'Geschlecht'},
     {field: 'age', render: 'string', headline: 'Alter'},
   ];
 

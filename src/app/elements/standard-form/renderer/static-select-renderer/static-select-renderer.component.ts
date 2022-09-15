@@ -1,29 +1,23 @@
-import {Component, forwardRef, OnInit} from '@angular/core';
+import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
-  selector: 'app-user-role-renderer',
-  templateUrl: './user-role-renderer.component.html',
-  styleUrls: ['./user-role-renderer.component.scss'],
+  selector: 'app-static-select-renderer',
+  templateUrl: './static-select-renderer.component.html',
+  styleUrls: ['./static-select-renderer.component.scss'],
   providers: [
-    { useExisting: forwardRef(() => UserRoleRendererComponent), provide: NG_VALUE_ACCESSOR, multi: true }
+    { useExisting: forwardRef(() => StaticSelectRendererComponent), provide: NG_VALUE_ACCESSOR, multi: true }
   ]
 })
-export class UserRoleRendererComponent implements OnInit, ControlValueAccessor {
-
-  public roles = [
-    {id: 'inactive', displayField: 'Inaktiv'},
-    {id: 'external_employee', displayField: 'Externer Angestellter'},
-    {id: 'external_manager', displayField: 'Externer Manager'},
-    {id: 'employee', displayField: 'Angestellter'},
-    {id: 'organization_manager', displayField: 'Organisationsverwalter'},
-    {id: 'instance_manager', displayField: 'Instanzverwalter'},
-  ];
+export class StaticSelectRendererComponent implements OnInit, ControlValueAccessor {
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  @Input()
+  public options;
 
   private innerValue: any = [''];
 
@@ -63,6 +57,5 @@ export class UserRoleRendererComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: any) {
     this.onTouchedCallback = fn;
   }
-
 
 }

@@ -2,22 +2,19 @@ import {Component, forwardRef, OnInit} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
-  selector: 'app-user-role-renderer',
-  templateUrl: './user-role-renderer.component.html',
-  styleUrls: ['./user-role-renderer.component.scss'],
+  selector: 'app-gender-select-renderer',
+  templateUrl: './gender-select-renderer.component.html',
+  styleUrls: ['./gender-select-renderer.component.scss'],
   providers: [
-    { useExisting: forwardRef(() => UserRoleRendererComponent), provide: NG_VALUE_ACCESSOR, multi: true }
+    { useExisting: forwardRef(() => GenderSelectRendererComponent), provide: NG_VALUE_ACCESSOR, multi: true }
   ]
 })
-export class UserRoleRendererComponent implements OnInit, ControlValueAccessor {
+export class GenderSelectRendererComponent implements OnInit, ControlValueAccessor {
 
-  public roles = [
-    {id: 'inactive', displayField: 'Inaktiv'},
-    {id: 'external_employee', displayField: 'Externer Angestellter'},
-    {id: 'external_manager', displayField: 'Externer Manager'},
-    {id: 'employee', displayField: 'Angestellter'},
-    {id: 'organization_manager', displayField: 'Organisationsverwalter'},
-    {id: 'instance_manager', displayField: 'Instanzverwalter'},
+  public genders = [
+    {id: 'male', displayField: 'männlich'},
+    {id: 'female', displayField: 'weiblich'},
+    {id: 'other', displayField: 'divers'},
   ];
 
   constructor() { }
@@ -25,7 +22,7 @@ export class UserRoleRendererComponent implements OnInit, ControlValueAccessor {
   ngOnInit(): void {
   }
 
-  private innerValue: any = [''];
+  private innerValue;
 
   private onTouchedCallback: () => void = () => {};
   private onChangeCallback: (_: any) => void = () => {};
@@ -63,6 +60,5 @@ export class UserRoleRendererComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: any) {
     this.onTouchedCallback = fn;
   }
-
 
 }

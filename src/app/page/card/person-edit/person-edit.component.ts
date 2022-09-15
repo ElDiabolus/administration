@@ -11,7 +11,7 @@ export class PersonEditComponent implements OnInit {
 
   public renderOptions = [
     {field: 'card_id', render: 'hidden', headline: 'Kartennummer'},
-    {field: 'gender', render: 'string', headline: 'Geschlecht'},
+    {field: 'gender', render: 'gender', headline: 'Geschlecht'},
     {field: 'age', render: 'input', headline: 'Alter', htmlType:'number'},
     {field: 'limitation_sets', render: 'entityarray', headline: 'Limitationsgruppe', entityName: 'limitation-set', displayField:"name"},
   ];

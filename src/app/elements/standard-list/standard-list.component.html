@@ -25,6 +25,9 @@
           <ng-container *ngIf="column.render == 'icon'">
             <app-icon-renderer  [value]="item[column.field]"></app-icon-renderer>
           </ng-container>
+          <ng-container *ngIf="column.render == 'gender'">
+            <app-gender-renderer [value]="item[column.field]"></app-gender-renderer>
+          </ng-container>
         </td>
       </ng-container>
       <button class="button-show-entry" [routerLink]="[(isSubHierarchy?'':'/')+entityName+'-edit/', item.id]">Eintrag bearbeiten</button>
