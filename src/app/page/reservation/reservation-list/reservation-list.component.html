@@ -1,6 +1,5 @@
 <div class="button-new" [routerLink]="['/reservation-new/']">NEW</div>
 <div class="previous" (click)="prevWeek()">prev</div>
-<div class="next" (click)="nextWeek()">next</div>
 <div class="dailyReservations" *ngFor="let reservationsPerDay of dailyReservations">
   <table>
     <tr>
@@ -23,4 +22,4 @@
     </tr>
   </table>
 </div>
-
+<div class="next" (click)="nextWeek()">next</div>
