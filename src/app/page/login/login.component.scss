@@ -1,0 +1,36 @@
+.login-area {
+  margin: 0;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.caritas-logo {
+  width: 260px;
+  height: 260px;
+  margin-bottom: 20px;
+}
+
+.button-login, .button-reset-password{
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.button-login{
+  width: 80px;
+}
+
+.button-login:hover, , .button-reset-password:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+.button-forgot-password{
+  float: right;
+}
+.button-forgot-password:hover{
+  cursor: pointer;
+}
+.input-email, .input-password{
+  border-style: unset;
+}

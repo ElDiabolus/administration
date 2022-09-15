@@ -1,6 +1,28 @@
-Mail: <input type="text" [(ngModel)]="name"/>
-<ng-container *ngIf="!isDisplayResetPassword">PW: <input type="password" [(ngModel)]="pw"/></ng-container>
-<button *ngIf="!isDisplayResetPassword" (click)="login()">Login</button><br/>
-<a *ngIf="!isDisplayResetPassword" (click)="displayResetPassword()">Passwort vergessen?</a>
-<button *ngIf="isDisplayResetPassword" (click)="resetPassword()">Passwort zurücksetzen</button>
-
+<div class="login-area">
+<img src="assets/caritas-logo.png" alt="caritas-logo" class="caritas-logo">
+<table >
+  <tr>
+    <td>
+      E-Mail:
+    </td>
+    <td>
+      <input class="input-email" type="text" [(ngModel)]="name"/>
+    </td>
+  </tr>
+  <tr>
+    <ng-container *ngIf="!isDisplayResetPassword">
+      <td>Passwort:</td>
+      <td><input class="input-password" type="password" [(ngModel)]="pw"/></td>
+    </ng-container>
+  </tr>
+  <tr>
+    <td>
+      <button class="button-login" *ngIf="!isDisplayResetPassword" (click)="login()">Login</button>
+    </td>
+    <td>
+      <a class="button-forgot-password" *ngIf="!isDisplayResetPassword" (click)="displayResetPassword()">Passwort vergessen?</a>
+      <button class="button-reset-password" *ngIf="isDisplayResetPassword" (click)="resetPassword()">Passwort zurücksetzen</button>
+    </td>
+  </tr>
+</table>
+</div>
