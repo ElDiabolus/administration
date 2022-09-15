@@ -22,7 +22,7 @@ export class OrganizationEditComponent implements OnInit {
     {field: 'street', render: 'string', headline: 'Straße'},
     {field: 'postcode', render: 'string', headline: 'PLZ'},
     {field: 'city', render: 'string', headline: 'Stadt'},
-    {field: 'contact', render: 'string', headline: 'E-Mail'},
+    {field: 'contact', render: 'string', headline: 'Kontaktmöglichkeiten'},
   ];
 
   public organization: any;

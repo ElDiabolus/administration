@@ -14,7 +14,7 @@ export class OrganizationListComponent implements OnInit {
     {field: 'street', render: 'string', headline: 'Straße'},
     {field: 'postcode', render: 'string', headline: 'PLZ'},
     {field: 'city', render: 'string', headline: 'Stadt'},
-    {field: 'contact', render: 'mail', headline: 'E-Mail'},
+    {field: 'contact', render: 'string', headline: 'Kontaktmöglichkeit'},
   ];
 
   ngOnInit(): void {

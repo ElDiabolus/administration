@@ -17,7 +17,7 @@ export class UserEditComponent implements OnInit {
     {field: 'email', render: 'input', htmlType:"email", headline: 'E-Mail'},
     {field: 'password', render: 'password', headline: 'Passwort'},
     {field: 'password_confirmation', render: 'password', headline: 'Passwortwiederholung'},
-    {field: 'roles', render: 'role', headline: 'Rolle', targetField: 'role'},
+    {field: 'role', render: 'role', headline: 'Rolle', targetField: 'role'},
     {field: 'organization_id', render: 'urlparameter', headline: 'organization_id', urlparameter: 'parentid'},
   ];
 }

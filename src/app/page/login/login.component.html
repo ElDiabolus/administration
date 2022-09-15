@@ -1,9 +1,12 @@
 <div class="login-area">
 <img src="assets/caritas-logo.png" alt="caritas-logo" class="caritas-logo">
-<table >
+<table>
   <tr>
-    <td>
+    <td *ngIf="!resetToken">
       E-Mail:
+    </td>
+    <td *ngIf="resetToken">
+      Neue E-Mail:
     </td>
     <td>
       <input class="input-email" type="text" [(ngModel)]="name"/>
@@ -11,18 +14,41 @@
   </tr>
   <tr>
     <ng-container *ngIf="!isDisplayResetPassword">
-      <td>Passwort:</td>
+      <td *ngIf="!resetToken">Passwort:</td>
+      <td *ngIf="resetToken">Neues Passwort:</td>
       <td><input class="input-password" type="password" [(ngModel)]="pw"/></td>
     </ng-container>
   </tr>
   <tr>
+    <ng-container *ngIf="resetToken">
+      <td *ngIf="resetToken">Neues Passwort bestätigen:</td>
+      <td><input class="input-password" type="password" [(ngModel)]="confirm_pw"/></td>
+    </ng-container>
+  </tr>
+  <tr>
     <td>
-      <button class="button-login" *ngIf="!isDisplayResetPassword" (click)="login()">Login</button>
+      <button class="button-login" *ngIf="!isDisplayResetPassword && !resetToken" (click)="login()">Login</button>
+      <button class="button-reset-password" *ngIf="resetToken" (click)="resetPassword()">Neues Passwort setzen</button>
     </td>
+    <td *ngIf="!resetToken">
+      <a class="button-forgot-password" *ngIf="!isDisplayResetPassword" (click)="displayResetPassword(true)">Passwort vergessen?</a>
+      <button class="button-reset-password" *ngIf="isDisplayResetPassword" (click)="forgotPassword()">Passwort zurücksetzen</button>
+      <br/>
+
+    </td>
+  </tr>
+  <tr>
     <td>
-      <a class="button-forgot-password" *ngIf="!isDisplayResetPassword" (click)="displayResetPassword()">Passwort vergessen?</a>
-      <button class="button-reset-password" *ngIf="isDisplayResetPassword" (click)="resetPassword()">Passwort zurücksetzen</button>
+      <button class="button-login-back" *ngIf="isDisplayResetPassword" (click)="displayResetPassword(false)">zurück zum Login</button>
     </td>
   </tr>
 </table>
+
+  <div *ngIf="displaySuccess && !resetToken">
+    Passwortrücksetzung erfolgreich angefordert!
+  </div>
+  <div *ngIf="displaySuccess && resetToken">
+    Passwortrücksetzung erfolgreich durchgeführt!
+  </div>
+
 </div>

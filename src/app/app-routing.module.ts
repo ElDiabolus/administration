@@ -57,6 +57,7 @@ const routes: Routes = [
   {path: 'reservation-edit/:id', component: ReservationEditComponent},
   {path: 'reservation-new', component: ReservationEditComponent},
   {path: 'reset/:token', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({

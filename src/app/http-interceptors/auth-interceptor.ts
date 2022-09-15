@@ -6,11 +6,17 @@ import {AuthenticationService} from "../api/services/authentication.service";
 import {catchError, map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {CookieService} from "ng2-cookies";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(protected authApiService: AuthenticationService, protected cookieService: CookieService) {
+
+  constructor(protected authApiService: AuthenticationService,
+              protected cookieService: CookieService,
+              private router: Router) {
+
+
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -28,10 +34,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
     // @ts-ignore
     return next.handle(req).pipe(catchError(response=> {
-      console.log(response);
       if(response.status == 401)
       {
         delete localStorage.hasLogin;
+        if(this.router.url != '/login' && this.router.url.indexOf("/reset") !== 0)
+        {
+          this.router.navigate(['login']);
+        }
       }
 
     }));

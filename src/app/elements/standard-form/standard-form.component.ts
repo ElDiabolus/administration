@@ -59,6 +59,7 @@ export class StandardFormComponent implements OnInit {
       {
         this.entity = {};
         this.setAdditionalParameters(params);
+        this.handleOpeningHours();
 
         return;
       }
@@ -70,7 +71,11 @@ export class StandardFormComponent implements OnInit {
       this.apiService[apiCall](requestParams).subscribe({
         next(value: void): void {
           me.entity = value;
+          if(me.entity.roles) {
+            me.entity.role = me.entity.roles[0];
+          }
           me.convertTimes();
+          me.handleOpeningHours();
         },
         error(err: any): void {
         }
@@ -91,6 +96,30 @@ export class StandardFormComponent implements OnInit {
     }
   }
 
+  handleOpeningHours()
+  {
+    for(const renderOption of this.renderOptions)
+    {
+      if(renderOption.render == 'openinghours')
+      {
+        if(!this.entity.hasOwnProperty(renderOption.field))
+        {
+          this.entity[renderOption.field] = {};
+        }
+        let defaultObject = {opens_at:'00:00', closes_at:'00:00', slots:0};
+        for(const day of ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'])
+        {
+          console.log(renderOption);
+          console.log(this.entity);
+          if(!this.entity[renderOption.field].hasOwnProperty(day))
+          {
+            this.entity[renderOption.field][day] = [Object.assign({}, defaultObject)];
+          }
+        }
+      }
+    }
+  }
+
   setAdditionalParameters(urlParams)
   {
     for(const renderOption of this.renderOptions)
@@ -103,7 +132,7 @@ export class StandardFormComponent implements OnInit {
 
       if(renderOption.render == 'role')
       {
-        this.entity[renderOption.field] = 'inactive';
+        //this.entity[renderOption.field] = 'inactive';
       }
       if(renderOption.render == 'entityarray')
       {
@@ -130,9 +159,19 @@ export class StandardFormComponent implements OnInit {
 
     for(const renderOption of this.renderOptions)
     {
-      if(renderOption.render == 'role')
+      if(renderOption.render == 'openinghours')
       {
-        this.entity[renderOption.targetField] = Array.isArray(this.entity[renderOption.field]) ? this.entity[renderOption.field][0] : this.entity[renderOption.field];
+        for(const day in this.entity[renderOption.field])
+        {
+          console.log("KAILLING"+day);
+          console.log(this.entity[renderOption.field]);
+          console.log(this.entity[renderOption.field][day]);
+          if(this.entity[renderOption.field][day][0].slots < 1)
+          {
+            console.log("KILLING"+day);
+            delete this.entity[renderOption.field][day];
+          }
+        }
       }
     }
 
@@ -143,13 +182,10 @@ export class StandardFormComponent implements OnInit {
       callParams[this.idParameterField] = this.entity.id;
       // @ts-ignore
       callParams.body = this.entity;
-      console.log(apiCall);
-      console.log(callParams);
-      console.log(this.entity);
       this.apiService[apiCall](callParams).subscribe(responseObserver);
     }
     else
-    {console.log(this.entity);
+    {
       let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'Post', this.customApiPathPost);
       this.apiService[apiCall]({body: this.entity}).subscribe(responseObserver);
     }

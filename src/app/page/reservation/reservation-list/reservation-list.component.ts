@@ -15,7 +15,7 @@ export class ReservationListComponent implements OnInit {
   constructor(protected reservationService: ReservationService) { }
 
   ngOnInit(): void {
-    console.log(this.firstDayOfWeek.getDay());
+
     let currentWeekDay = (this.firstDayOfWeek.getDay()+6)%7;//make week begin at monday
     this.firstDayOfWeek.setDate(this.firstDayOfWeek.getDate()-currentWeekDay);
     this.lastDayOfWeek.setDate(this.firstDayOfWeek.getDate()+6);
@@ -35,7 +35,7 @@ export class ReservationListComponent implements OnInit {
         for(const item of value.items)
         {
           // @ts-ignore
-          let dateStr = item.time.split("T")[0];
+          let dateStr = (new Date(item.time)).toLocaleDateString();
           if(!dayBuckets.hasOwnProperty(dateStr))
           {
             dayBuckets[dateStr] = [];

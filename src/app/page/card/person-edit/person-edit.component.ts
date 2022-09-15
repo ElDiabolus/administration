@@ -14,6 +14,7 @@ export class PersonEditComponent implements OnInit {
     {field: 'gender', render: 'gender', headline: 'Geschlecht'},
     {field: 'age', render: 'input', headline: 'Alter', htmlType:'number'},
     {field: 'limitation_sets', render: 'entityarray', headline: 'Limitationsgruppe', entityName: 'limitation-set', displayField:"name"},
+    {field: 'card_id', render: 'urlparameter', urlparameter: 'parentid'},
   ];
 
   ngOnInit(): void {

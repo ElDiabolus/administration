@@ -26,7 +26,7 @@ export class OpeningHoursRendererComponent implements OnInit, ControlValueAccess
     {accessor: 'sunday', headline: 'Sonntag'},
   ];
 
-  private innerValue: any = '';
+  private innerValue: any = null;
 
   private onTouchedCallback: () => void = () => {};
   private onChangeCallback: (_: any) => void = () => {};
