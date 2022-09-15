@@ -1,0 +1,55 @@
+.button-new {
+  float: left;
+  width: 35px;
+  background-color: white;
+  color: black;
+  padding: 10px 24px;
+  margin: 5px 5px;
+  border: 2px solid #E3000E;
+  transition-duration: 0.4s;
+}
+
+.previous {
+  float: left;
+  background-color: #f1f1f1;
+  color: black;
+  display: block;
+  padding: 10px 24px;
+  margin: 5px;
+  cursor: pointer;
+  width: 40px;
+  text-align: center;
+}
+
+.next {
+  float: left;
+  background-color: #E3000E;
+  color: white;
+  display: block;
+  padding: 10px 24px;
+  margin: 5px;
+  cursor: pointer;
+  width: 40px;
+  text-align: center;
+}
+
+.button-new:hover {
+  background-color: #E3000E;
+  color: white;
+  cursor: pointer;
+}
+.dailyReservations{
+  float: left;
+}
+.reservationsPerDay{
+  border-bottom: 1px solid #E3000E;
+}
+.button-edit{
+  margin-top: 8px;
+}
+
+.button-edit:hover{
+  cursor: pointer;
+  background-color: #E3000E;
+  color: white;
+}

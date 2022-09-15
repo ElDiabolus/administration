@@ -1,12 +1,26 @@
-<div *ngFor="let reservationsPerDay of dailyReservations">
-  {{reservationsPerDay.day}}
-  <div *ngFor="let reservation of reservationsPerDay.reservations">
-    {{ reservation.card.first_name }}
-    {{ reservation.card.last_name }}
-    <app-date-renderer [displayTime]="true" [value]="reservation.time"></app-date-renderer>
-    <span [routerLink]="['/reservation-edit/', reservation.id]">EDIT</span>
-  </div>
+<div class="button-new" [routerLink]="['/reservation-new/']">NEW</div>
+<div class="previous" (click)="prevWeek()">prev</div>
+<div class="next" (click)="nextWeek()">next</div>
+<div class="dailyReservations" *ngFor="let reservationsPerDay of dailyReservations">
+  <table>
+    <tr>
+      <th>
+        {{reservationsPerDay.day}}
+      </th>
+    </tr>
+
+    <tr>
+      <div class="reservationsPerDay" *ngFor="let reservation of reservationsPerDay.reservations">
+        <td>{{ reservation.card.first_name }}</td>
+        <td> {{ reservation.card.last_name }}</td>
+        <td>
+          <app-date-renderer [displayTime]="true" [value]="reservation.time"></app-date-renderer>
+        </td>
+        <td>
+          <button class="button-edit" [routerLink]="['/reservation-edit/', reservation.id]">EDIT</button>
+        </td>
+      </div>
+    </tr>
+  </table>
 </div>
-<div [routerLink]="['/reservation-new/']">NEW</div>
-<div (click)="prevWeek()">prev</div>
-<div (click)="nextWeek()">next</div>
+
