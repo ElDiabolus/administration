@@ -42,6 +42,10 @@ export class AuthInterceptor implements HttpInterceptor {
           this.router.navigate(['login']);
         }
       }
+      if(response.status == 422)
+      {
+        alert(response.error.message);
+      }
 
     }));
   }

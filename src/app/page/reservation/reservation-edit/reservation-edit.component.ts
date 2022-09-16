@@ -10,9 +10,9 @@ export class ReservationEditComponent implements OnInit {
   constructor() { }
 
   public renderOptions = [
-    {field: 'time', render: 'datetime', headline: 'time'},
-    {field: 'shop_id', render: 'entity', headline: 'shop', entityName: 'shop', displayField:"name"},
-    {field: 'card_id', render: 'string', headline: 'card_id'},
+    {field: 'time', render: 'datetime', headline: 'Zeit'},
+    {field: 'shop_id', render: 'entity', headline: 'Laden', entityName: 'shop', displayField:"name"},
+    {field: 'card_id', render: 'string', headline: 'Kartennummer'},
   ];
 
   ngOnInit(): void {
