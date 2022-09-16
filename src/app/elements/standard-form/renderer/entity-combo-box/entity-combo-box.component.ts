@@ -77,8 +77,6 @@ export class EntityComboBoxComponent implements OnInit, ControlValueAccessor {
     this.queryParameters.limit = 500;
     this.apiService[apiCall](this.queryParameters).subscribe({
       next(response) {
-        console.log("response");
-        console.log(response);
         me.options = response.items;
       },
       error(msg) {

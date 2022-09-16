@@ -68,8 +68,6 @@ export class StandardListComponent implements OnInit {
           }
           return item;
         });
-        console.log("me.listItems");
-        console.log(me.listItems);
       },
       error(msg) {
         console.log('Error Getting Location: ', msg);

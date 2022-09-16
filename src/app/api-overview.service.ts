@@ -65,15 +65,13 @@ export class ApiOverviewService {
     {
       callName = 'apiAdmin'+customApiPath+apiMethod;
     }
-    console.log("callName");
-    console.log(callName);
+
     if(typeof this.getServiceByEntityName(entityName)[callName] === 'function')
     {
       return callName;
     }
     else
     {
-      console.log("ERR00");
       throwError("call "+callName+" not found on entity "+entityName);
     }
   }

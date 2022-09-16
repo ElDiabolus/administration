@@ -44,8 +44,7 @@ export class StandardFormComponent implements OnInit {
     let me = this;
     this.apiService = this.apiOverview.getServiceByEntityName(this.entityName);
     let apiCall = this.apiOverview.getApiMethodName(this.entityName, 'IdGet', this.customApiPath);
-    console.log("apiCall");
-    console.log(apiCall);
+
     this.route.params.subscribe(params => {
 
       if(!me.customReturnPath && params.hasOwnProperty("parentid"))
@@ -75,6 +74,7 @@ export class StandardFormComponent implements OnInit {
             me.entity.role = me.entity.roles[0];
           }
           me.convertTimes();
+          me.convertEntityArray();
           me.handleOpeningHours();
         },
         error(err: any): void {
@@ -83,6 +83,16 @@ export class StandardFormComponent implements OnInit {
     });
   }
 
+  convertEntityArray()
+  {
+    for(const renderOption of this.renderOptions)
+    {
+      if(renderOption.render == 'entityarray')
+      {
+        this.entity[renderOption.field][0] = this.entity[renderOption.field][0].id;
+      }
+    }
+  }
   convertTimes()
   {
     for(const renderOption of this.renderOptions)
@@ -109,8 +119,6 @@ export class StandardFormComponent implements OnInit {
         let defaultObject = {opens_at:'00:00', closes_at:'00:00', slots:0};
         for(const day of ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'])
         {
-          console.log(renderOption);
-          console.log(this.entity);
           if(!this.entity[renderOption.field].hasOwnProperty(day))
           {
             this.entity[renderOption.field][day] = [Object.assign({}, defaultObject)];
@@ -163,12 +171,8 @@ export class StandardFormComponent implements OnInit {
       {
         for(const day in this.entity[renderOption.field])
         {
-          console.log("KAILLING"+day);
-          console.log(this.entity[renderOption.field]);
-          console.log(this.entity[renderOption.field][day]);
           if(this.entity[renderOption.field][day][0].slots < 1)
           {
-            console.log("KILLING"+day);
             delete this.entity[renderOption.field][day];
           }
         }
